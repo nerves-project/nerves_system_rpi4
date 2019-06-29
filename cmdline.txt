@@ -1,0 +1,6 @@
+# NOTES:
+# 1. serial0 is magically replaced to the right thing by the RPi bootloader.
+#    /dev/serial0 won't exist unless you make it, so don't expected it in
+#    userland.
+# 2. If not using HDMI, remove console=tty1 and consoleblank=0
+dwc_otg.lpm_enable=0 console=tty1 console=serial0,115200 fbcon=scrollback:1024k root=/dev/mmcblk0p2 rootfstype=f2fs rootwait consoleblank=0
