@@ -27,6 +27,7 @@ dtparam=audio=on
 # This makes it possible to run Scenic out of the box with the popular
 # Raspberry Pi 7" Touchscreen. It appears to be harmless for non-touchscreen
 # users, but if not, let us know!
+# NOTE: The touchscreen seems to work fine with these commented out on the RPi4
 #dtoverlay=rpi-ft5406
 #dtoverlay=rpi-backlight
 
