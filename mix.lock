@@ -6,7 +6,7 @@
   "makeup": {:hex, :makeup, "0.8.0", "9cf32aea71c7fe0a4b2e9246c2c4978f9070257e5c9ce6d4a28ec450a839b55f", [:mix], [{:nimble_parsec, "~> 0.5.0", [hex: :nimble_parsec, repo: "hexpm", optional: false]}], "hexpm"},
   "makeup_elixir": {:hex, :makeup_elixir, "0.13.0", "be7a477997dcac2e48a9d695ec730b2d22418292675c75aa2d34ba0909dcdeda", [:mix], [{:makeup, "~> 0.8", [hex: :makeup, repo: "hexpm", optional: false]}], "hexpm"},
   "nerves": {:hex, :nerves, "1.5.0", "8be45730c90583272563629a30ebb1099515a156a1de844f8dc443eaf63f7b8f", [:mix], [{:distillery, "~> 2.1", [hex: :distillery, repo: "hexpm", optional: true]}, {:jason, "~> 1.0", [hex: :jason, repo: "hexpm", optional: true]}], "hexpm"},
-  "nerves_system_br": {:hex, :nerves_system_br, "1.8.2", "bd1639c9aadbeb104c1d1080554048eeed28352841bf5621a7cbeaca53e99404", [:mix], [], "hexpm"},
+  "nerves_system_br": {:hex, :nerves_system_br, "1.8.3", "923000e6cff0f015446b3b9bdb4a67d1b8cee8157fd8e3252c7212b10faff5e9", [:mix], [], "hexpm"},
   "nerves_system_linter": {:hex, :nerves_system_linter, "0.3.0", "84e0f63c8ac196b16b77608bbe7df66dcf352845c4e4fb394bffd2b572025413", [:mix], [], "hexpm"},
   "nerves_toolchain_arm_unknown_linux_gnueabihf": {:hex, :nerves_toolchain_arm_unknown_linux_gnueabihf, "1.2.0", "ba48ce7c846ee12dfca8148dc7240988d96a3f2eb9c234bf08bffe4f0f7a3c62", [:mix], [{:nerves, "~> 1.0", [hex: :nerves, repo: "hexpm", optional: false]}, {:nerves_toolchain_ctng, "~> 1.6.0", [hex: :nerves_toolchain_ctng, repo: "hexpm", optional: false]}], "hexpm"},
   "nerves_toolchain_ctng": {:hex, :nerves_toolchain_ctng, "1.6.0", "452f8589c1a58ac787477caab20a8cfc6671e345837ccc19beefe49ae35ba983", [:mix], [{:nerves, "~> 1.0", [hex: :nerves, repo: "hexpm", optional: false]}], "hexpm"},
