@@ -1,4 +1,4 @@
-# Raspberry Pi 3 Test Suite
+# Raspberry Pi 4 Test Suite
 
 Executes ExUnit tests on target hardware and reports results to the
 [Nerves test server](https://nerves-test-server.herokuapp.com/nerves-project/nerves_system_rpi4)
@@ -61,5 +61,5 @@ $ mix firmware.burn
 
 ## Provisioning
 
-The Raspberry Pi 3 uses `eth0` to connect to the report server and requires a
+The Raspberry Pi 4 uses `eth0` to connect to the report server and requires a
 wired ethernet connection. The device should establish a connection to the network and join the test farm.

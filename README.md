@@ -47,7 +47,7 @@ using the wired Ethernet interface 'eth0' and DHCP.
 
 ## Supported WiFi devices
 
-The base image includes drivers for the onboard Raspberry Pi 3 wifi module
+The base image includes drivers for the onboard Raspberry Pi 4 wifi module
 (`brcmfmac` driver).
 
 ## Audio
