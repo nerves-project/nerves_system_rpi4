@@ -10,15 +10,21 @@ end
 defmodule Test.MixProject do
   use Mix.Project
 
+  @app :test
+  @version "0.1.0"
+
   def project do
     [
-      app: :test,
-      version: "0.1.0",
-      elixir: "~> 1.6",
-      archives: [nerves_bootstrap: "~> 1.0"],
+      app: @app,
+      version: @version,
+      elixir: "~> 1.9",
+      archives: [nerves_bootstrap: "~> 1.6"],
       start_permanent: Mix.env() == :prod,
+      build_embedded: true,
       aliases: [loadconfig: [&bootstrap/1]],
-      deps: deps()
+      deps: deps(),
+      releases: [{@app, release()}],
+      preferred_cli_target: [run: :host, test: :host]
     ]
   end
 
@@ -34,9 +40,17 @@ defmodule Test.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:distillery, "~> 2.1"},
       {:nerves_system_rpi4, path: "../", runtime: false},
       {:nerves_system_test, github: "nerves-project/nerves_system_test"}
+    ]
+  end
+
+  def release do
+    [
+      overwrite: true,
+      cookie: "#{@app}_cookie",
+      include_erts: &Nerves.Release.erts/0,
+      steps: [&Nerves.Release.init/1, :assemble]
     ]
   end
 
