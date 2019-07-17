@@ -11,20 +11,18 @@ defmodule Test.MixProject do
   use Mix.Project
 
   @app :test
-  @version "0.1.0"
 
   def project do
     [
       app: @app,
-      version: @version,
+      name: "system-test",
+      version: "0.1.0",
       elixir: "~> 1.9",
       archives: [nerves_bootstrap: "~> 1.6"],
       start_permanent: Mix.env() == :prod,
-      build_embedded: true,
       aliases: [loadconfig: [&bootstrap/1]],
       deps: deps(),
-      releases: [{@app, release()}],
-      preferred_cli_target: [run: :host, test: :host]
+      releases: [{@app, release()}]
     ]
   end
 
@@ -32,7 +30,7 @@ defmodule Test.MixProject do
   def application, do: []
 
   defp bootstrap(args) do
-    set_target()
+    Mix.target(:target)
     Application.start(:nerves_bootstrap)
     Mix.Task.run("loadconfig", args)
   end
@@ -41,7 +39,8 @@ defmodule Test.MixProject do
   defp deps do
     [
       {:nerves_system_rpi4, path: "../", runtime: false},
-      {:nerves_system_test, github: "nerves-project/nerves_system_test"}
+      {:shoehorn, "~> 0.6"},
+      {:nerves_test_client, github: "mobileoverlord/nerves_test_client"}
     ]
   end
 
@@ -52,13 +51,5 @@ defmodule Test.MixProject do
       include_erts: &Nerves.Release.erts/0,
       steps: [&Nerves.Release.init/1, :assemble]
     ]
-  end
-
-  defp set_target() do
-    if function_exported?(Mix, :target, 1) do
-      apply(Mix, :target, [:target])
-    else
-      System.put_env("MIX_TARGET", "target")
-    end
   end
 end
