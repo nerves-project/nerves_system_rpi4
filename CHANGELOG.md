@@ -1,5 +1,21 @@
 # Changelog
 
+## v1.9.0
+
+NOTE: bootcode.bin is not used by the RPi 4 and is no longer built.
+  If updating a fork of this project, be sure to remove references to it from
+  your fwup.conf. See
+  https://www.raspberrypi.org/documentation/hardware/raspberrypi/booteeprom.md
+
+This release updates Buildroot to 2019.08 with security and bug fix updates
+across Linux packages. See the `nerves_system_br` notes for details.
+
+* Updated dependencies
+  * [nerves_system_br v1.9.2](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.9.2)
+
+* Enhancements
+  * Support a variety of USB->UART adapters so more devices work out-of-the-box
+
 ## v1.8.2
 
 This release fixes an issue that broke display output on small LCD screens.
