@@ -1,5 +1,24 @@
 # Changelog
 
+## v1.9.1
+
+This release pulls in security and bug fix updates from `nerves_system_br`.
+Erlang/OTP is now at 22.1.1.
+
+IMPORTANT: The IEx prompt was being output on the UART. This was inconsistent
+with other Nerves/Raspberry Pi systems and has been fixed. If you want to
+use the UART, you'll need to override the `erlinit.config` file.
+
+* Bug fixes
+  * Default to displaying the iex prompt on the HDMI port like the other
+    Raspberry Pi systems
+  * Compile in the I2C drivers so they're available early on for NervesKey and
+    other use at initialization
+
+* Updated dependencies
+  * [nerves_system_br v1.9.4](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.9.4)
+  * linux - update to the raspberrypi-kernel_1.20190925-1 tag
+
 ## v1.9.0
 
 NOTE: bootcode.bin is not used by the RPi 4 and is no longer built.
