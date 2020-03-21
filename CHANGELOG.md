@@ -1,5 +1,25 @@
 # Changelog
 
+## v1.11.1
+
+This release updates the Linux configuration to match changes in the latest
+Raspberry Pi kernel configuration for the Raspberry Pi 4. If you have made
+a custom system, the following kernel configuration changes may affect you:
+
+```
++CONFIG_CPUFREQ_DT=y
++CONFIG_ARM_RASPBERRYPI_CPUFREQ=y
++# CONFIG_ARM_BCM2835_CPUFREQ is not set
++CONFIG_RPIVID_MEM=m
++CONFIG_REGULATOR_FIXED_VOLTAGE=y
++CONFIG_DRM_V3D=m
++CONFIG_CLK_RASPBERRYPI=y
+```
+
+* Bug fixes
+  * Fixed regulator kernel configuration setting that prevented booting
+    sometimes (this was a "not sure how this ever worked" kind of bug)
+
 ## v1.11.0
 
 This release updates Buildroot to 2020.02 and upgrades gcc from 8.3 to 9.2.
