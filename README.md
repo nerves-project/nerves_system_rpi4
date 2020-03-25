@@ -38,13 +38,6 @@ If you need custom modifications to this system for your device, clone this
 repository and update as described in [Making custom
 systems](https://hexdocs.pm/nerves/systems.html#customizing-your-own-nerves-system)
 
-If you're new to Nerves, check out the
-[nerves_init_gadget](https://github.com/nerves-project/nerves_init_gadget)
-project for creating a starter project. It will get you started with the basics
-like bringing up networking, initializing the writable application data
-partition, and enabling ssh-based firmware updates.  It's easiest to begin by
-using the wired Ethernet interface 'eth0' and DHCP.
-
 ## Supported WiFi devices
 
 The base image includes drivers for the onboard Raspberry Pi 4 wifi module
