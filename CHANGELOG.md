@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.11.2
+
+* Updated dependencies
+  * [nerves_system_br v1.11.2](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.11.2)
+  * Erlang 22.3.1
+  * erlinit 1.7.0 - tty initialization support
+  * fwup 1.6.0 - xdelta3/VCDIFF patch support
+  * Enable unixodbc so that Erlang's odbc application can be used in projects
+
 ## v1.11.1
 
 This release updates the Linux configuration to match changes in the latest
