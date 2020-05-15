@@ -1,0 +1,51 @@
+--- a/pyocd/probe/pydapaccess/interface/pyusb_backend.py
++++ b/pyocd/probe/pydapaccess/interface/pyusb_backend.py
+@@ -30,6 +30,7 @@ LOG = logging.getLogger(__name__)
+ try:
+     import usb.core
+     import usb.util
++    import usb.backend.libusb1
+ except:
+     if os.name == "posix" and not os.uname()[0] == 'Darwin':
+         LOG.error("PyUSB is required on a Linux Machine")
+@@ -61,7 +62,8 @@ class PyUSB(Interface):
+         assert self.closed is True
+
+         # Get device handle
+-        dev = usb.core.find(custom_match=FindDap(self.serial_number))
++        backend = usb.backend.libusb1.get_backend(find_library=lambda x: "/usr/lib/libusb-1.0.so")
++        dev = usb.core.find(custom_match=FindDap(self.serial_number), backend=backend)
+         if dev is None:
+             raise DAPAccessIntf.DeviceError("Device %s not found" % self.serial_number)
+
+@@ -144,7 +146,8 @@ class PyUSB(Interface):
+         returns an array of PyUSB (Interface) objects
+         """
+         # find all cmsis-dap devices
+-        all_devices = usb.core.find(find_all=True, custom_match=FindDap())
++        backend = usb.backend.libusb1.get_backend(find_library=lambda x: "/usr/lib/libusb-1.0.so")
++        all_devices = usb.core.find(find_all=True, custom_match=FindDap(), backend=backend)
+
+         # iterate on all devices found
+         boards = []
+
+--- a/pyocd/probe/pydapaccess/interface/pyusb_v2_backend.py
++++ b/pyocd/probe/pydapaccess/interface/pyusb_v2_backend.py
+@@ -32,6 +32,7 @@ LOG = logging.getLogger(__name__)
+ try:
+     import usb.core
+     import usb.util
++    import usb.backend.libusb1
+ except:
+     IS_AVAILABLE = False
+ else:
+@@ -72,7 +73,8 @@ class PyUSBv2(Interface):
+         assert self.closed is True
+
+         # Get device handle
+-        dev = usb.core.find(custom_match=HasCmsisDapv2Interface(self.serial_number))
++        backend = usb.backend.libusb1.get_backend(find_library=lambda x: "/usr/lib/libusb-1.0.so")
++        dev = usb.core.find(custom_match=HasCmsisDapv2Interface(self.serial_number), backend=backend)
+         if dev is None:
+             raise DAPAccessIntf.DeviceError("Device %s not found" %
+                                             self.serial_number)

@@ -1,0 +1,6 @@
+_build/
+deps/
+build.log
+archive.log
+.nerves/
+dist/

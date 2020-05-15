@@ -1,0 +1,13 @@
+diff --git a/tool/Makefile.am b/tool/Makefile.am
+index 45206e3..2e01da1 100644
+--- a/tool/Makefile.am
++++ b/tool/Makefile.am
+@@ -51,8 +51,6 @@ MAINTAINERCLEANFILES = $(BUILT_SOURCES)
+ 
+ # Doc.
+ 
+-dist_man_MANS = yubico-piv-tool.1
+-MAINTAINERCLEANFILES += $(dist_man_MANS)
+ 
+ yubico-piv-tool.1: $(yubico_piv_tool_SOURCES) $(libpiv_cmd_la_SOURCES) $(top_srcdir)/configure.ac | $(builddir)/yubico-piv-tool$(EXEEXT)
+ 	$(HELP2MAN) --no-info \

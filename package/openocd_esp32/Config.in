@@ -1,0 +1,9 @@
+config BR2_PACKAGE_OPENOCD_ESP32
+        bool "openocd_esp32"
+        depends on BR2_TOOLCHAIN_HAS_THREADS #
+        select BR2_PACKAGE_LIBUSB
+        select BR2_PACKAGE_LIBUSB_COMPAT
+        select BR2_PACKAGE_LIBFTDI
+        help
+           OpenOCD for esp32
+

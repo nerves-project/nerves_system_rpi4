@@ -1,0 +1,17 @@
+--- a/avrdude/avrftdi.c	2019-09-16 12:04:41.000000000 -0700
++++ b/avrdude/avrftdi.c	2019-09-16 14:41:40.000000000 -0700
+@@ -982,6 +982,14 @@
+ 	unsigned char *buffer = &m->buf[addr];
+ 	unsigned char buf[4*len+4], *bufptr = buf;
+ 
++	// Skip ranges that are all-0xFF
++	for(poll_index = addr+len-1; poll_index > addr-1; poll_index--)
++		if(m->buf[poll_index] != 0xff)
++			break;
++	if (poll_index < addr ) {
++		return 0;
++	}
++
+ 	memset(buf, 0, sizeof(buf));
+ 
+ 	/* pre-check opcodes */

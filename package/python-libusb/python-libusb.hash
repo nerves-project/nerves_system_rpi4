@@ -1,0 +1,5 @@
+# md5, sha256 from https://pypi.org/pypi/libusb/json
+md5	ce191017f5585de0838b714df5f4956f  libusb-1.0.22b9.zip
+sha256	b74964ebd0280d694586f76a74ade9713d410ad262cd2c2ed5a58c071c94bd0b  libusb-1.0.22b9.zip
+# Locally computed sha256 checksums
+sha256	d052dd865b7401416c242e134ae5a95d830f1af7af1e507ccc97beb660adf2fc  LICENSE

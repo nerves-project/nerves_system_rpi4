@@ -1,0 +1,9 @@
+config BR2_PACKAGE_OPENOCD_NRF9160
+        bool "openocd_nrf9160"
+        depends on BR2_TOOLCHAIN_HAS_THREADS #
+        select BR2_PACKAGE_LIBUSB
+        select BR2_PACKAGE_LIBUSB_COMPAT
+        select BR2_PACKAGE_LIBFTDI
+        help
+           OpenOCD for nrf9160
+

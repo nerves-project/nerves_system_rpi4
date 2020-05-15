@@ -1,8 +1,8 @@
-defmodule NervesSystemRpi4.MixProject do
+defmodule LY11SystemRpi4.MixProject do
   use Mix.Project
 
-  @github_organization "nerves-project"
-  @app :nerves_system_rpi4
+  @github_organization "bcdevices"
+  @app :ly11_system_rpi4
   @version Path.join(__DIR__, "VERSION")
            |> File.read!()
            |> String.trim()
@@ -36,7 +36,8 @@ defmodule NervesSystemRpi4.MixProject do
     [
       type: :system,
       artifact_sites: [
-        {:github_releases, "#{@github_organization}/#{@app}"}
+        {:github_releases, "#{@github_organization}/#{@app}"},
+        {:prefix, "https://ly-archive.iotcloud.io/"}
       ],
       build_runner_opts: build_runner_opts(),
       platform: Nerves.System.BR,
@@ -50,7 +51,7 @@ defmodule NervesSystemRpi4.MixProject do
   defp deps do
     [
       {:nerves, "~> 1.5.4 or ~> 1.6.0", runtime: false},
-      {:nerves_system_br, "1.11.2", runtime: false},
+      {:nerves_system_br, "1.11.3", runtime: false},
       {:nerves_toolchain_arm_unknown_linux_gnueabihf, "~> 1.3.0", runtime: false},
       {:nerves_system_linter, "~> 0.3.0", runtime: false},
       {:ex_doc, "~> 0.18", only: [:dev, :test], runtime: false}
@@ -59,12 +60,13 @@ defmodule NervesSystemRpi4.MixProject do
 
   defp description do
     """
-    Nerves System - Raspberry Pi 4
+    LY11 Nerves System - Raspberry Pi 4
     """
   end
 
   defp package do
     [
+      maintainers: ["Blue Clover Devices"],
       files: package_files(),
       licenses: ["Apache 2.0"],
       links: %{"GitHub" => "https://github.com/#{@github_organization}/#{@app}"}
@@ -73,6 +75,8 @@ defmodule NervesSystemRpi4.MixProject do
 
   defp package_files do
     [
+      "package",
+      "external.mk",
       "fwup_include",
       "rootfs_overlay",
       "CHANGELOG.md",
@@ -83,10 +87,13 @@ defmodule NervesSystemRpi4.MixProject do
       "LICENSE",
       "linux-4.19.defconfig",
       "mix.exs",
+      "patches",
+      "busybox_defconfig",
       "nerves_defconfig",
       "post-build.sh",
       "post-createfs.sh",
       "ramoops.dts",
+      "users_table.txt",
       "README.md",
       "VERSION"
     ]
@@ -109,7 +116,7 @@ defmodule NervesSystemRpi4.MixProject do
     if function_exported?(Mix, :target, 1) do
       apply(Mix, :target, [:target])
     else
-      System.put_env("MIX_TARGET", "target")
+      System.put_env("MIX_TARGET", "ly11_rpi4")
     end
   end
 end

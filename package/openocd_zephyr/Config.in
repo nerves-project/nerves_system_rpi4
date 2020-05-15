@@ -1,0 +1,10 @@
+config BR2_PACKAGE_OPENOCD_ZEPHYR
+        bool "openocd_zephyr"
+        depends on BR2_TOOLCHAIN_HAS_THREADS #
+        select BR2_PACKAGE_LIBUSB
+        select BR2_PACKAGE_LIBUSB_COMPAT
+        select BR2_PACKAGE_LIBFTDI
+        select BR2_PACKAGE_HIDAPI
+        help
+           OpenOCD for Zephyr
+

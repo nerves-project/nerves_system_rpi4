@@ -1,0 +1,38 @@
+name: A workflow for building Nerves system
+on: push
+
+jobs:
+  build:
+    name:  Build Nerves system
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+      - name: Cache buildroot downloads
+        id: cache-downloads
+        uses: actions/cache@v1
+        with:
+          path: /home/runner/work/_temp/_github_home/.nerves/dl
+          key: buildroot-cache-${{ hashFiles(format('{0}{1}', github.workspace, '/mix.lock')) }}
+          restore-keys: |
+            buildroot-cache-
+            buidroot-dl-
+      - name: Build
+        uses: ./.github/actions/build
+      - name: Upload S3
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --acl public-read --follow-symlinks
+        env:
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'us-west-1'
+          SOURCE_DIR: 'dist'
+      - name: Upload Release Asset
+        uses: meeDamian/github-release@1.0
+        if: contains(github.ref, 'tags')
+        with:
+          token: ${{secrets.GITHUB_TOKEN}}
+          files: /github/home/.nerves/dl/ly11_system_rpi4-portable*
+          gzip: false

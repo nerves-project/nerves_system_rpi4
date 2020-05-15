@@ -1,0 +1,19 @@
+config BR2_PACKAGE_PYTHON_PYOCD
+	bool "python-pyocd"
+	select BR2_PACKAGE_PYTHON_CMSIS_PACK_MANAGER # runtime
+	select BR2_PACKAGE_PYTHON_COLORAMA # runtime
+	#select BR2_PACKAGE_PYTHON_ENUM34 # runtime
+	select BR2_PACKAGE_PYTHON_HIDAPI # runtime
+	select BR2_PACKAGE_PYTHON_INTELHEX # runtime
+	select BR2_PACKAGE_PYTHON_INTERVALTREE # runtime
+	select BR2_PACKAGE_PYTHON_PRETTYTABLE # runtime
+	select BR2_PACKAGE_PYTHON_PYELFTOOLS # runtime
+	select BR2_PACKAGE_PYTHON_PYUSB # runtime
+	select BR2_PACKAGE_PYTHON_PYWINUSB # runtime
+	select BR2_PACKAGE_PYTHON_PYYAML # runtime
+	select BR2_PACKAGE_PYTHON_SIX # runtime
+	select BR2_PACKAGE_PYTHON_LIBUSB1 # runtime
+	help
+	  Cortex-M debugger for Python.
+
+	  https://github.com/mbedmicro/pyOCD

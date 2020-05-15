@@ -2,7 +2,7 @@ use Mix.Config
 
 # Repository specific configuration
 
-platform = "rpi4"
+platform = "ly11_rpi4"
 arch = "arm"
 
 app_part_devparth = "/dev/mmcblk0p3"
@@ -45,7 +45,7 @@ config :nerves_runtime, :kv,
   nerves_fw_application_part0_fstype: "f2fs",
   nerves_fw_application_part0_target: "/root",
   nerves_fw_architecture: arch,
-  nerves_fw_author: "The Nerves Team",
+  nerves_fw_author: "Blue Clover Devices",
   nerves_fw_description: Mix.Project.config()[:description],
   nerves_fw_platform: platform,
   nerves_fw_product: Mix.Project.config()[:app],
