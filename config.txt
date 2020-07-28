@@ -12,6 +12,9 @@
 # Disable the boot rainbow
 disable_splash=1
 
+# Enable initramfs for auto-reverts
+initramfs nerves_initramfs followkernel
+
 # This, along with the Raspberry Pi "x" firmware is needed for the camera
 # to work. The Raspberry Pi "x" firmware is selected via the Buildroot
 # configuration. See Target packages->Hardware handling->Firmware.
@@ -46,4 +49,3 @@ enable_uart=1
 # Enable DRM VC4 V3D driver on top of the dispmanx display stack
 #dtoverlay=vc4-fkms-v3d
 #max_framebuffers=2
-
