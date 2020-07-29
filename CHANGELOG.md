@@ -1,5 +1,15 @@
 # Changelog
 
+## v2.0.0-rc.0
+
+* New Features
+  * Uses `nerves_initramfs` to support pre-start checks for deciding if a
+    firmware should automatically be reverted before the kernel is loaded.
+    By default, this checks UBoot variable `nerves_fw_validated` and if the
+    firmware has not been validated, a revert will be triggered. This means
+    a user must validate the firmware on first boot via
+    `Nerves.Runtime.validate_firmware/0` or by writing to UBoot directly
+
 ## v1.12.1
 
 * Fixes
@@ -186,4 +196,3 @@ the Raspberry Pi Foundation promotes 32-bit usage so that's what's used here.
   * Erlang 22.0.7
   * [nerves_system_br v1.8.4](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.8.4)
   * [nerves_toolchain_arm_unknown_linux_gnueabihf v1.2.0](https://github.com/nerves-project/toolchains/releases/tag/v1.2.0)
-
