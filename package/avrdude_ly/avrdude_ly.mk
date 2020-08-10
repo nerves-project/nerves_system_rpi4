@@ -5,7 +5,7 @@
 ################################################################################
 
 AVRDUDE_LY_VERSION = 1435
-AVRDUDE_LY_SITE = http://svn.savannah.nongnu.org/svn/avrdude/trunk
+AVRDUDE_LY_SITE = http://svn.savannah.nongnu.org/svn/avrdude/trunk/avrdude@1435
 AVRDUDE_LY_SITE_METHOD = svn
 AVRDUDE_LY_LICENSE = GPL-2.0+
 AVRDUDE_LY_LICENSE_FILES = avrdude/COPYING
