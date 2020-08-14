@@ -1,4 +1,4 @@
-FROM  nervesproject/nerves_system_br:1.11.3
+FROM nervesproject/nerves_system_br:1.12.2
 
 LABEL "com.github.actions.name"="Build System"
 LABEL "com.github.actions.description"="Build Nerves System"
@@ -9,7 +9,7 @@ LABEL "repositoty"="https://github.com/bcdevices/ly10-system-rpi3"
 LABEL "homepage"="https://github.com/bcdevices/ly10-system-rpi3"
 LABEL "maintainer"="Blue Clover Devices"
 
-ENV ELIXIR_VERSION=1.10.3-otp-22
+ENV ELIXIR_VERSION=1.10.4-otp-23
 
 RUN apt-get -y install -y \
       subversion
