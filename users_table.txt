@@ -1,2 +1,2 @@
 debug -1 debug -1 - /root/home/debug /bin/ash -
-
+kiosk -1 kiosk -1 * - - video,input Kiosk user
