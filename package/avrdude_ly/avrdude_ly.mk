@@ -4,12 +4,10 @@
 #
 ################################################################################
 
-AVRDUDE_LY_VERSION = 1435
-AVRDUDE_LY_SITE = http://svn.savannah.nongnu.org/svn/avrdude/trunk/avrdude@1435
-AVRDUDE_LY_SITE_METHOD = svn
+AVRDUDE_LY_VERSION = 9cb8d9b
+AVRDUDE_LY_SITE = git://github.com/bcdevices/avrdude
 AVRDUDE_LY_LICENSE = GPL-2.0+
-AVRDUDE_LY_LICENSE_FILES = avrdude/COPYING
-AVRDUDE_LY_SUBDIR = avrdude
+AVRDUDE_LY_LICENSE_FILES = COPYING
 # Sources coming from git, without generated configure and Makefile.in
 # files.
 AVRDUDE_LY_AUTORECONF = YES
@@ -25,7 +23,7 @@ endif
 
 # Autoreconf requires an m4 directory to exist
 define AVRDUDE_LY_PATCH_M4
-	mkdir -p $(@D)/avrdude/m4
+	mkdir -p $(@D)/m4
 endef
 AVRDUDE_LY_POST_PATCH_HOOKS += AVRDUDE_LY_PATCH_M4
 
