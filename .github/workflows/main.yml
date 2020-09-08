@@ -18,7 +18,7 @@ jobs:
             buildroot-cache-
             buidroot-dl-
       - name: Pre-setup
-        run: apt-get update && apt-get install lsb-release build-essential automake autoconf git squashfs-tools ssh-askpass pkg-config curl -y
+        run: sudo apt-get update && apt-get install lsb-release build-essential automake autoconf git squashfs-tools ssh-askpass pkg-config curl -y
       - name: Setup elixir
         uses: actions/setup-elixir@v1.4.0
         with:
