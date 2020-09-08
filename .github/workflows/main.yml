@@ -23,7 +23,7 @@ jobs:
         uses: actions/setup-elixir@v1.4.0
         with:
           otp-version: '23.0.3'
-          elixir-version: '1.10.4-otp-23'
+          elixir-version: '1.10.4'
       - name: Build
         run:  make dist
       - name: Upload S3
