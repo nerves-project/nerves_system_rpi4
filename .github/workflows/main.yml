@@ -17,8 +17,15 @@ jobs:
           restore-keys: |
             buildroot-cache-
             buidroot-dl-
+      - name: Pre-setup
+        run: apt-get update && apt-get install lsb-release build-essential automake autoconf git squashfs-tools ssh-askpass pkg-config curl -y
+      - name: Setup elixir
+        uses: actions/setup-elixir@v1.4.0
+        with:
+          otp-version: '23.0.3'
+          elixir-version: '1.10.4-otp-23'
       - name: Build
-        uses: ./.github/actions/build
+        run:  make dist
       - name: Upload S3
         uses: jakejarvis/s3-sync-action@master
         with:
