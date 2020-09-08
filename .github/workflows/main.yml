@@ -18,12 +18,12 @@ jobs:
             buildroot-cache-
             buidroot-dl-
       - name: Pre-setup
-        run: sudo apt-get update && sudo apt-get install lsb-release build-essential automake autoconf git squashfs-tools ssh-askpass pkg-config curl -y
+        run: sudo apt-get update && sudo apt-get install lsb-release build-essential automake autoconf git squashfs-tools ssh-askpass pkg-config curl gcc-multilib -y
       - name: Setup elixir
         uses: actions/setup-elixir@v1.4.0
         with:
           otp-version: '23.0.3'
-          elixir-version: '1.10.4'
+          elixir-version: '1.10.43'
       - name: Build
         run:  make dist
       - name: Upload S3
