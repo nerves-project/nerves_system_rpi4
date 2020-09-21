@@ -6,6 +6,12 @@ This release updates to [Buildroot
 2020.05.1](http://lists.busybox.net/pipermail/buildroot/2020-July/287824.html)
 and OTP 23.0.3 which are both bug fix releases.
 
+IMPORTANT: If you have made a custom `fwup.conf` file, then you'll need to
+replace references to `start4.elf` with `start.elf` and references to
+`fixup4.dat` with `fixup.dat`. See [commit
+e21ad76](https://github.com/nerves-project/nerves_system_rpi4/commit/e21ad76b817583f44afc31935581f7df00aabb35)
+for how this change was made here.
+
 * Updated dependencies
   * [nerves_system_br: bump to v1.12.4](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.12.4)
   * [Erlang/OTP 23.0.3](https://erlang.org/download/OTP-23.0.3.README)
