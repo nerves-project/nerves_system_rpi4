@@ -1,12 +1,11 @@
-FROM nervesproject/nerves_system_br:1.12.2
-
+FROM nervesproject/nerves_system_br:1.13.0
 LABEL "com.github.actions.name"="Build System"
 LABEL "com.github.actions.description"="Build Nerves System"
 LABEL "com.github.actions.icon"="package"
 LABEL "com.github.actions.color"="blue"
 
-LABEL "repositoty"="https://github.com/bcdevices/ly10-system-rpi3"
-LABEL "homepage"="https://github.com/bcdevices/ly10-system-rpi3"
+LABEL "repository"="https://github.com/bcdevices/ly11-system-rpi4"
+LABEL "homepage"="https://github.com/bcdevices/ly11-system-rpi4"
 LABEL "maintainer"="Blue Clover Devices"
 
 ENV ELIXIR_VERSION=1.10.4-otp-23
@@ -25,6 +24,9 @@ RUN mkdir -p /nerves-system
 
 #Set Working Directory
 WORKDIR /nerves-system
+
+RUN mkdir -p /root/local
+RUN mkdir -p /root/empty
 
 # COPY
 COPY . /nerves-system
