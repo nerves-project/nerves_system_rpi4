@@ -9,6 +9,14 @@
 # https://github.com/raspberrypi/documentation/blob/master/configuration/device-tree.md
 # https://github.com/raspberrypi/firmware/blob/master/boot/overlays/README
 
+# Enable 64-bit support
+arm_64bit=1
+
+# We always use the same names, the real used variant is selected by
+# BR2_PACKAGE_RPI_FIRMWARE_{DEFAULT,X,CD} choice
+start_file=start.elf
+fixup_file=fixup.dat
+
 # Disable the boot rainbow
 disable_splash=1
 
@@ -21,15 +29,6 @@ gpu_mem=192
 dtparam=i2c_arm=on
 dtparam=spi=on
 dtparam=audio=on
-
-# Enable drivers for the Raspberry Pi 7" Touchscreen
-#
-# This makes it possible to run Scenic out of the box with the popular
-# Raspberry Pi 7" Touchscreen. It appears to be harmless for non-touchscreen
-# users, but if not, let us know!
-# NOTE: The touchscreen seems to work fine with these commented out on the RPi4
-#dtoverlay=rpi-ft5406
-#dtoverlay=rpi-backlight
 
 # Comment this in or modify to enable OneWire
 # NOTE: check that the overlay that you specify is in the boot partition or
