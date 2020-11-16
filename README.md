@@ -1,4 +1,4 @@
-# Raspberry Pi 4 Model B
+# Raspberry Pi 4 Model B (64-bit)
 
 [![CircleCI](https://circleci.com/gh/nerves-project/nerves_system_rpi4.svg?style=svg)](https://circleci.com/gh/nerves-project/nerves_system_rpi4)
 [![Hex version](https://img.shields.io/hexpm/v/nerves_system_rpi4.svg "Hex version")](https://hex.pm/packages/nerves_system_rpi4)
@@ -11,20 +11,20 @@ This is the base Nerves System configuration for the Raspberry Pi 4 Model B.
 
 | Feature              | Description                     |
 | -------------------- | ------------------------------- |
-| CPU                  | 1.5 GHz quad-core Cortex-A72 (ARM v8) |
+| CPU                  | 1.5 GHz quad-core Cortex-A72 (64-bit mode) |
 | Memory               | 1 GB, 2 GB, 4 GB DRAM           |
 | Storage              | MicroSD                         |
-| Linux kernel         | 4.19 w/ Raspberry Pi patches    |
+| Linux kernel         | 5.4 w/ Raspberry Pi patches     |
 | IEx terminal         | HDMI and USB keyboard (can be changed to UART) |
 | GPIO, I2C, SPI       | Yes - [Elixir Circuits](https://github.com/elixir-circuits) |
 | ADC                  | No                              |
 | PWM                  | Yes, but no Elixir support      |
 | UART                 | 1 available - `ttyS0`           |
 | Display              | HDMI or 7" RPi Touchscreen      |
-| Camera               | Yes - via rpi-userland          |
+| Camera               | Untested                        |
 | Ethernet             | Yes                             |
-| WiFi                 | Yes - Nerves.Network            |
-| Bluetooth            | Watch [Harald](https://github.com/verypossible/harald) |
+| WiFi                 | Yes - VintageNet                |
+| Bluetooth            | Untested                        |
 | Audio                | HDMI/Stereo out                 |
 
 ## Using
