@@ -5,8 +5,15 @@ set -e
 # Create the revert script for manually switching back to the previously
 # active firmware.
 mkdir -p "$TARGET_DIR/usr/share/fwup"
-ln -sf /root/local "$TARGET_DIR/var/local"
-ln -sf /root/empty "$TARGET_DIR/var/empty"
+
+if [ -f /root/local]; then
+  ln -sf /root/local "$TARGET_DIR/var/local"
+fi
+
+if [-f /root/empty]; then
+  ln -sf /root/empty "$TARGET_DIR/var/empty"
+fi
+
 "$HOST_DIR/usr/bin/fwup" -c -f "$NERVES_DEFCONFIG_DIR/fwup-revert.conf" -o "$TARGET_DIR/usr/share/fwup/revert.fw"
 
 # Copy the fwup includes to the images dir
