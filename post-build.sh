@@ -6,11 +6,11 @@ set -e
 # active firmware.
 mkdir -p "$TARGET_DIR/usr/share/fwup"
 
-if [ -f /root/local ]; then
+if [ -d /root/local ]; then
   ln -sf /root/local "$TARGET_DIR/var/local"
 fi
 
-if [ -f /root/empty ]; then
+if [ -d /root/empty ]; then
   ln -sf /root/empty "$TARGET_DIR/var/empty"
 fi
 
