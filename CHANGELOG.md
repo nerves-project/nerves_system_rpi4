@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.13.3
+
+This releases enables the OpenGL ES drivers so that it's possible to run UI
+libraries without a custom system. Note that the RPi4 uses the Linux DRM
+interface rather than MMAL and so it is not compatible with Elixir UI libraries
+that work on other Raspberry Pis.
+
+* Updated dependencies
+  * [nerves_system_br: bump to v1.13.7](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.13.7)
+  * [Erlang/OTP 23.1.5](https://erlang.org/download/OTP-23.1.5.README)
+
 ## v1.13.2
 
 This release fixes the following issues found with the switch to 64-bit ARM:
