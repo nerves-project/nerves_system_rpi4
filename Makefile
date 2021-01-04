@@ -44,7 +44,7 @@ install-dependencies:
 	MIX_TARGET=$(MIX_TARGET) mix deps.get
 
 install-nerves-bootstrap:
-	mix archive.install git https://github.com/nerves-project/nerves_bootstrap.git tag v1.8.0 --force
+	mix archive.install git https://github.com/nerves-project/nerves_bootstrap.git tag v1.10.1 --force
 
 .PHONY: build
 build: versions install-hex-rebar install-nerves-bootstrap install-dependencies build-prep
@@ -62,6 +62,14 @@ dist: dist-prep build
 	[ -d $(ARTIFACT_DIR) ] && \
 		MIX_TARGET=$(MIX_TARGET) fakeroot mix nerves.artifact $(PRJTAG) --path $(DIST) \
 		|| echo 'Skipping previously artifact'
+
+.PHONY: build-test-app
+build-test-app:
+	cd ./plt_test_app && MIX_TARGET=$(MIX_TARGET) mix do deps.get, firmware
+
+.PHONY: dist-test-app
+dist-test-app: build-test-app dist-prep
+	cp ./plt_test_app/_build/ly11_rpi4_dev/nerves/images/plt_test.fw $(DIST)/plt_test_$(VERSION_TAG).fw
 
 .PHONY: docker
 docker: clean

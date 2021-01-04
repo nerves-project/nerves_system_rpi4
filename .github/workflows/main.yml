@@ -17,6 +17,8 @@ jobs:
           restore-keys: |
             buildroot-cache-
             buidroot-dl-
+      - name: Clear Artifacts
+        run: rm -rf /github/home/.nerves/dl/ly11_system_rpi4-portable*
       - name: Build
         uses: ./.github/actions/build
       - name: Upload S3
@@ -29,10 +31,11 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'us-west-1'
           SOURCE_DIR: 'dist'
-      - name: Upload Release Asset
-        uses: meeDamian/github-release@1.0
+      - name: Upload Artifacts
         if: contains(github.ref, 'tags')
+        uses: svenstaro/upload-release-action@v2
         with:
-          token: ${{secrets.GITHUB_TOKEN}}
-          files: /github/home/.nerves/dl/ly11_system_rpi4-portable*
-          gzip: false
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: dist/*
+          file_glob: true
+          tag: ${{ github.ref }}
