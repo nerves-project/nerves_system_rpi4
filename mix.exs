@@ -57,7 +57,7 @@ defmodule LY11SystemRpi4.MixProject do
   defp deps do
     [
       {:nerves, "~> 1.5.4 or ~> 1.6.0 or ~> 1.7.1", runtime: false},
-      {:nerves_system_br, "1.13.5", runtime: false},
+      {:nerves_system_br, "1.14.0", runtime: false},
       {:nerves_toolchain_aarch64_unknown_linux_gnu, "~> 1.3.0", runtime: false},
       {:nerves_system_linter, "~> 0.4", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.22", only: :docs, runtime: false}
@@ -123,10 +123,9 @@ defmodule LY11SystemRpi4.MixProject do
   end
 
   defp build_runner_opts() do
-    if primary_site = System.get_env("BR2_PRIMARY_SITE") do
-      [make_args: ["BR2_PRIMARY_SITE=#{primary_site}"]]
-    else
-      []
+    case System.get_env("BR2_PRIMARY_SITE") do
+      nil -> []
+      primary_site -> [make_args: ["BR2_PRIMARY_SITE=#{primary_site}"]]
     end
   end
 
