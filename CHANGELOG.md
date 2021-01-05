@@ -1,5 +1,34 @@
 # Changelog
 
+## v1.13.3
+
+This releases enables the OpenGL ES drivers so that it's possible to run UI
+libraries without a custom system. Note that the RPi4 uses the Linux DRM
+interface rather than MMAL and so it is not compatible with Elixir UI libraries
+that work on other Raspberry Pis.
+
+* Updated dependencies
+  * [nerves_system_br: bump to v1.13.7](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.13.7)
+  * [Erlang/OTP 23.1.5](https://erlang.org/download/OTP-23.1.5.README)
+
+## v1.13.2
+
+This release fixes the following issues found with the switch to 64-bit ARM:
+
+* Circuits.GPIO can't set pullups
+* 5 GHz WiFi is either flaky or doesn't work
+* No GPU drivers
+
+A huge thanks for people in the Nerves community that identified these issues
+and helped verify the fixes.
+
+This release also includes a patch release update to [Buildroot
+2020.08.2](http://lists.busybox.net/pipermail/buildroot/2020-November/296830.html).
+
+* Updated dependencies
+  * [nerves_system_br: bump to v1.13.5](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.13.5)
+  * [erlinit 1.9.0](https://github.com/nerves-project/erlinit/releases/tag/v1.9.0)
+
 ## v1.13.1
 
 IMPORTANT: This release runs the RPi4 in 64-bit ARM mode. This change was made
