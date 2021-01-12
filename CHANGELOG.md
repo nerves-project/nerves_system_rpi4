@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.13.4
+
+This release adds missing V3D/VC4 drivers and enables the `vc4-fkms-v3d` device
+tree overlay. This fixes issues found when trying out OpenGLES w/ DRM.
+
 ## v1.13.3
 
 This releases enables the OpenGL ES drivers so that it's possible to run UI
