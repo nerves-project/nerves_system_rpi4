@@ -1,9 +1,11 @@
 # Changelog
 
-## v1.13.4
+## v1.13.5
 
 This release adds missing V3D/VC4 drivers and enables the `vc4-fkms-v3d` device
 tree overlay. This fixes issues found when trying out OpenGLES w/ DRM.
+
+Note: v1.13.4 was broken
 
 ## v1.13.3
 
