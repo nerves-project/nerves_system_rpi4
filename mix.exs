@@ -106,6 +106,7 @@ defmodule LY11SystemRpi4.MixProject do
       "mix.exs",
       "patches",
       "busybox_defconfig",
+      "boot.cmd",
       "nerves_defconfig",
       "post-build.sh",
       "post-createfs.sh",

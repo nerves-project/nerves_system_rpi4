@@ -10,8 +10,10 @@ LABEL "maintainer"="Blue Clover Devices"
 
 ENV ELIXIR_VERSION=1.10.4-otp-23
 
-RUN apt-get -y install -y \
-      subversion
+RUN apt-get update && \
+    apt-get install -y \
+      subversion \
+      u-boot-tools
 
 #Install Elixir
 RUN wget https://repo.hex.pm/builds/elixir/v$ELIXIR_VERSION.zip && \
