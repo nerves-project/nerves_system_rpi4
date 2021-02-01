@@ -104,6 +104,7 @@ defmodule LY11SystemRpi4.MixProject do
       "linux-5.4.defconfig",
       "linux_additional.defconfig",
       "mix.exs",
+      "mix.lock",
       "patches",
       "busybox_defconfig",
       "boot.cmd",
