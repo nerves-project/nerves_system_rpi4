@@ -54,12 +54,12 @@ dtoverlay=mcp2515-can0,oscillator=8000000,interrupt=25
 
 # Custom settings for DFRobot HDMI display
 # only supports HDMI0
-#hdmi_cvt=1080 1920 48 3 0 0 0
-#hdmi_driver=2
-#hdmi_group=2
-#hdmi_mode=87
-#max_framebuffer_width=1080
-#max_framebuffer_height=1920
-#display_rotate=1
+hdmi_cvt=1080 1920 48 3 0 0 0
+hdmi_driver=2
+hdmi_group=2
+hdmi_mode=87
+max_framebuffer_width=1080
+max_framebuffer_height=1920
+display_rotate=1
 
 
