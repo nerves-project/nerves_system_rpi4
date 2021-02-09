@@ -1,0 +1,57 @@
+From df543cb1a1f804a434dd0499f915fab3b8b34ba3 Mon Sep 17 00:00:00 2001
+From: Drew Fustini <drew@pdp7.com>
+Date: Wed, 3 Feb 2021 12:35:40 -0800
+Subject: [PATCH 1/2] Add family ID 0xB0 for CCG3PA
+
+Add family ID 0xB0 for [CCG3PA USB Type-C Port Controller](https://www.cypress.com/products/ez-pd-ccg3pa-usb-type-c-and-power-delivery)
+
+MiniProg4 can connect to the DAP inside CCG3PA over SWD and read memory from the ROM table in the CCG3PA in `psoc4_get_family()`:
+```
+*****************************************
+** Silicon: 0x2003, Family: 0xB0, Rev.: 0x12 (A1)
+** Detected Family: CCG3PA USB Type-C Port Controller
+** Detected Main Flash size, kb: 64
+** Chip Protection: protection OPEN
+*****************************************
+```
+
+NOTE: `kitprog3 posc_acquire` fails per issue #4
+---
+ src/flash/nor/psoc4.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/flash/nor/psoc4.c b/src/flash/nor/psoc4.c
+index 405d452cd..e4bf69c12 100644
+--- a/src/flash/nor/psoc4.c
++++ b/src/flash/nor/psoc4.c
+@@ -251,6 +251,7 @@ const struct psoc4_chip_family psoc4_families[] = {
+ 	{ 0xAB, "PSoC 4100S",                           .flags = 0, .spcif_ver = spcif_v3 },
+ 	{ 0xAC, "PSoC 4100PS/PSoC Analog Coprocessor",  .flags = 0, .spcif_ver = spcif_v3 },
+ 	{ 0xAE, "PSoC 4xx8 BLE",                        .flags = PSOC4_FLAG_IMO_NOT_REQUIRED, .spcif_ver = spcif_v2 },
++	{ 0xB0, "CCG3PA USB Type-C Port Controller",    .flags = 0, .spcif_ver = spcif_v3 },	
+ 	{ 0xB5, "PSoC 4100S Plus",                      .flags = 0, .spcif_ver = spcif_v3 },
+ 	{ 0xB8, "PSoC 4100S Plus/PSoC 4500",            .flags = 0, .spcif_ver = spcif_v3 },
+ 	{ 0xBE, "PSoC 4100S Max",                       .flags = 0, .spcif_ver = spcif_v3 },
+
+From b620d2afefdb52d26e78575a29b1ce3e51c22720 Mon Sep 17 00:00:00 2001
+From: Drew Fustini <drew@pdp7.com>
+Date: Wed, 3 Feb 2021 12:37:25 -0800
+Subject: [PATCH 2/2] remove trailing whitespace in psoc4_families[]
+
+---
+ src/flash/nor/psoc4.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/flash/nor/psoc4.c b/src/flash/nor/psoc4.c
+index e4bf69c12..7ccb12f23 100644
+--- a/src/flash/nor/psoc4.c
++++ b/src/flash/nor/psoc4.c
+@@ -251,7 +251,7 @@ const struct psoc4_chip_family psoc4_families[] = {
+ 	{ 0xAB, "PSoC 4100S",                           .flags = 0, .spcif_ver = spcif_v3 },
+ 	{ 0xAC, "PSoC 4100PS/PSoC Analog Coprocessor",  .flags = 0, .spcif_ver = spcif_v3 },
+ 	{ 0xAE, "PSoC 4xx8 BLE",                        .flags = PSOC4_FLAG_IMO_NOT_REQUIRED, .spcif_ver = spcif_v2 },
+-	{ 0xB0, "CCG3PA USB Type-C Port Controller",    .flags = 0, .spcif_ver = spcif_v3 },	
++	{ 0xB0, "CCG3PA USB Type-C Port Controller",    .flags = 0, .spcif_ver = spcif_v3 },
+ 	{ 0xB5, "PSoC 4100S Plus",                      .flags = 0, .spcif_ver = spcif_v3 },
+ 	{ 0xB8, "PSoC 4100S Plus/PSoC 4500",            .flags = 0, .spcif_ver = spcif_v3 },
+ 	{ 0xBE, "PSoC 4100S Max",                       .flags = 0, .spcif_ver = spcif_v3 },
