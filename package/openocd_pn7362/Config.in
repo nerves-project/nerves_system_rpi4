@@ -1,9 +1,0 @@
-config BR2_PACKAGE_OPENOCD_PN7362
-        bool "openocd_pn7362"
-        depends on BR2_TOOLCHAIN_HAS_THREADS #
-        select BR2_PACKAGE_LIBUSB
-        select BR2_PACKAGE_LIBUSB_COMPAT
-        select BR2_PACKAGE_LIBFTDI
-        help
-           OpenOCD for PN7362
-

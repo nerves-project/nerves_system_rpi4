@@ -1,5 +1,0 @@
-# md5, sha256 from https://pypi.org/pypi/intervaltree/json
-md5	4159801f23d2d9eb98db6c60f9c3b665  intervaltree-3.0.2.tar.gz
-sha256	cb4f61c81dcb4fea6c09903f3599015a83c9bdad1f0bbd232495e6681e19e273  intervaltree-3.0.2.tar.gz
-# Locally computed sha256 checksums
-sha256	cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30  LICENSE.txt

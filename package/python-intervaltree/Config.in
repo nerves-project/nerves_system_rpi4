@@ -1,7 +1,0 @@
-config BR2_PACKAGE_PYTHON_INTERVALTREE
-	bool "python-intervaltree"
-	select BR2_PACKAGE_PYTHON_SORTEDCONTAINERS # runtime
-	help
-	  Editable interval tree data structure for Python 2 and 3.
-
-	  https://github.com/chaimleib/intervaltree
