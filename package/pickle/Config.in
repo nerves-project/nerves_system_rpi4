@@ -1,7 +1,0 @@
-config BR2_PACKAGE_PICKLE
-	bool "pickle"
-	depends on BR2_TOOLCHAIN_HAS_THREADS
-	help
-	  pickle is a programmer for Microchip PIC microcontrollers
-
-	  http://hg.kewl.org/pub/pickle

@@ -1,5 +1,0 @@
-# md5, sha256 from https://pypi.org/pypi/pyOCD/json
-md5 75f888b59942cf083e80e1d26cc1ef41 python-pyocd-v0.25.0.tar.gz
-sha256 586d3562340d97adcfd36574501218dafe84b26d628cb6b107bb0868012481f8 python-pyocd-v0.25.0.tar.gz
-# Locally computed sha256 checksums
-sha256	87edf00eb3adb7b328bbd302d87cf4eda0743f0bc36c60189d52c05e516a0402  LICENSE

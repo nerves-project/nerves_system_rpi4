@@ -1,5 +1,0 @@
-config BR2_PACKAGE_PYTHON_PRETTYTABLE
-	bool "python-prettytable"
-	help
-	  A simple Python library for easily displaying tabular data in a visually appealing ASCII table format
-

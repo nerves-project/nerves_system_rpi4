@@ -1,9 +1,0 @@
-config BR2_PACKAGE_YUBICO_PIV_TOOL
-	bool "yubico_piv_tool"
-  select BR2_PACKAGE_LIBTOOL
-  select BR2_PACKAGE_CHECK
-  select BR2_PACKAGE_CCID
-  select BR2_PACKAGE_PCSC_LITE
-	help
-	   The Yubico PIV tool is used for interacting with the Privilege and Identification Card (PIV) application on a YubiKey.
-

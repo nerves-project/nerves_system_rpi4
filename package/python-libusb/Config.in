@@ -1,7 +1,0 @@
-config BR2_PACKAGE_PYTHON_LIBUSB
-	bool "python-libusb"
-	help
-	  Python binding for the libusb C library (ctypes/cffi-based
-	  libusb).
-
-	  https://pypi.org/project/libusb/
