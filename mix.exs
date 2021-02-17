@@ -100,7 +100,6 @@ defmodule LY11SystemRpi4.MixProject do
 
   defp package_files do
     [
-      "package",
       "external.mk",
       "fwup_include",
       "rootfs_overlay",
@@ -113,7 +112,6 @@ defmodule LY11SystemRpi4.MixProject do
       "linux-5.4.defconfig",
       "linux_additional.defconfig",
       "mix.exs",
-      "mix.lock",
       "patches",
       "busybox_defconfig",
       "boot.cmd",
