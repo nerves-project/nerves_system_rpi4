@@ -14,6 +14,90 @@ Sync with changes up to v1.13.0
     a user must validate the firmware on first boot via
     `Nerves.Runtime.validate_firmware/0` or by writing to UBoot directly
 
+## v1.14.0
+
+This release updates to Buildroot 2020.11.2, GCC 10.2 and OTP 23.2.4.
+
+When migrating custom systems based, please be aware of the following important
+changes:
+
+* There's a new `getrandom` syscall that is made early in BEAM startup. This has
+  the potential to block the BEAM before Nerves can start `rngd` to provide
+  entropy. We have not seen this issue here, but have updated `erlinit.config`
+  for the time being as a precaution.
+* The GCC 10.2.0 toolchain has a different name that calls out "nerves" as the
+  vendor and the naming is now more consistent with other toolchain providers.
+* Experimental support for tooling that requires more information about the
+  target has been added. The initial support focuses on zigler.
+
+* Updated dependencies
+  * [nerves_system_br: bump to v1.14.4](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.14.4)
+  * [Buildroot 2020.11.2](http://lists.busybox.net/pipermail/buildroot/2021-January/302574.html)
+  * [Erlang/OTP 23.2.4](https://erlang.org/download/OTP-23.2.4.README)
+  * [Nerves toolchains 1.4.1](https://github.com/nerves-project/toolchains/releases/tag/v1.4.1)
+
+## v1.13.5
+
+This release adds missing V3D/VC4 drivers and enables the `vc4-fkms-v3d` device
+tree overlay. This fixes issues found when trying out OpenGLES w/ DRM.
+
+## v1.13.3
+
+This releases enables the OpenGL ES drivers so that it's possible to run UI
+libraries without a custom system. Note that the RPi4 uses the Linux DRM
+interface rather than MMAL and so it is not compatible with Elixir UI libraries
+that work on other Raspberry Pis.
+
+* Updated dependencies
+  * [nerves_system_br: bump to v1.13.7](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.13.7)
+  * [Erlang/OTP 23.1.5](https://erlang.org/download/OTP-23.1.5.README)
+
+## v1.13.2
+
+This release fixes the following issues found with the switch to 64-bit ARM:
+
+* Circuits.GPIO can't set pullups
+* 5 GHz WiFi is either flaky or doesn't work
+* No GPU drivers
+
+A huge thanks for people in the Nerves community that identified these issues
+and helped verify the fixes.
+
+This release also includes a patch release update to [Buildroot
+2020.08.2](http://lists.busybox.net/pipermail/buildroot/2020-November/296830.html).
+
+* Updated dependencies
+  * [nerves_system_br: bump to v1.13.5](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.13.5)
+  * [erlinit 1.9.0](https://github.com/nerves-project/erlinit/releases/tag/v1.9.0)
+
+## v1.13.1
+
+IMPORTANT: This release runs the RPi4 in 64-bit ARM mode. This change was made
+for many reasons. See
+https://github.com/nerves-project/nerves_system_rpi4/issues/65 for details.
+While this is a big change, it is likely that it will not affect your programs
+at all.
+
+The second change in this release is to bump the Linux kernel to 5.4. This
+follows the kernel update in the Raspberry Pi OS.
+
+If you have based a custom system off of this one, please inspect all
+configuration files for changes. In particular, WiFi firmware location has
+changed since the `rpi-wifi-firmware` package went out of date. Git commit
+messages on the `nerves_system_rpi4` repository may also be helpful.
+
+* Updated dependencies
+  * [nerves_system_br: bump to v1.13.4](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.13.4)
+  * [Erlang/OTP 23.1.4](https://erlang.org/download/OTP-23.1.4.README)
+  * [boardid 1.10.0](https://github.com/nerves-project/boardid/releases/tag/v1.10.0)
+
+* Improvements
+  * Enabled reproducible builds in Buildroot to remove some timestamp and build
+    path differences in firmware images. This helps delta firmware updates.
+  * The memory cgroup controller is no longer enabled by default. This was an
+    upstream change. As a result, the memory cgroup directory is no longer
+    mounted.
+
 ## v1.13.0
 
 This release updates to [Buildroot

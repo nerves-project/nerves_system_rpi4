@@ -3,4 +3,6 @@
 #    /dev/serial0 won't exist unless you make it, so don't expected it in
 #    userland.
 # 2. If not using HDMI, remove console=tty1 and consoleblank=0
-dwc_otg.lpm_enable=0 console=tty1 console=serial0,115200 fbcon=scrollback:1024k root=/dev/mmcblk0p2 rootfstype=squashfs rootwait consoleblank=0
+# 3. quiet skips printing kernel messages to the output and significantly
+#    shortens boot time
+dwc_otg.lpm_enable=0 console=tty1 console=serial0,115200 fbcon=scrollback:1024k root=/dev/mmcblk0p2 rootfstype=squashfs rootwait consoleblank=0 quiet
