@@ -1,2 +1,2 @@
-debug -1 debug -1 - /root/home/debug /bin/ash -
+debug -1 debug -1 - /mnt/plt/home/debug /bin/false -
 

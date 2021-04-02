@@ -1,4 +1,8 @@
-[{"usb0", %{type: VintageNetDirect}}, {"eth0", %{ipv4: %{method: :dhcp}, type: VintageNetEthernet}}]
+[
+  {"usb0", %{type: VintageNetDirect}},
+  {"eth0", %{ipv4: %{method: :dhcp}, type: VintageNetEthernet}}
+]
+
 [
   {"usb0", %{type: VintageNetDirect}},
   {"eth0", %{ipv4: %{method: :dhcp}, type: VintageNetEthernet}}
@@ -46,7 +50,8 @@ if keys == [],
     """)
 
 config :nerves_ssh,
-  authorized_keys: Enum.map(keys, &File.read!/1)
+  authorized_keys: Enum.map(keys, &File.read!/1),
+  port: 2222
 
 wireless_config =
   case System.get_env("NERVES_NETWORK_SSID") do
