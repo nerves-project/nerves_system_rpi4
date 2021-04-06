@@ -20,7 +20,9 @@ jobs:
             buildroot-cache-
             buidroot-dl-
       - name: Clear Artifacts
-        run: rm -rf /github/home/.nerves/dl/ly11_system_rpi4-portable*
+        run: |
+          rm -rf /github/home/.nerves/dl/ly11_system_rpi4-portable*
+          rm -rf /github/home/.nerves/artifacts/ly11_system_rpi4-portable*
       - name: Build
         uses: ./.github/actions/build
       - name: Upload S3
