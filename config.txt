@@ -46,3 +46,9 @@ enable_uart=1
 dtoverlay=vc4-fkms-v3d
 max_framebuffers=2
 
+[cm4]
+# Raspberry Pi CM4-only settings
+
+# For the CM4 I/O board, USB is disabled by default. This enables it.
+dtoverlay=dwc2,dr_mode=host
+
