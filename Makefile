@@ -86,7 +86,7 @@ dist-clean:
 .PHONY: dist
 dist: dist-prep build
 	[ -d $(ARTIFACT_DIR) ] && \
-		MIX_TARGET=$(MIX_TARGET) fakeroot mix nerves.artifact $(PRJTAG) --path $(DIST) \
+		MIX_TARGET=$(MIX_TARGET) mix nerves.artifact $(PRJTAG) --path $(DIST) \
 		|| echo 'Skipping previously artifact'
 
 .PHONY: docker
