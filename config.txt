@@ -46,21 +46,20 @@ dtoverlay=ramoops
 enable_uart=1
 
 # Enable DRM VC4 V3D driver on top of the dispmanx display stack
+# NOTE: enabling V3D driver breaks fbdev display rotation
 #dtoverlay=vc4-fkms-v3d
 #max_framebuffers=2
 
 # Enable CAN Bus
-dtoverlay=mcp2515-can0,oscillator=8000000,interrupt=25
+#dtoverlay=mcp2515-can0,oscillator=8000000,interrupt=25
 
 # Custom settings for DFRobot HDMI display
-# only supports HDMI0
-
 [HDMI:0]
 hdmi_cvt=1080 1920 48 3 0 0 0
 hdmi_driver=2
 hdmi_group=2
 hdmi_mode=87
-display_rotate=1
+display_rotate=3
 
 [HDMI:1]
 #
