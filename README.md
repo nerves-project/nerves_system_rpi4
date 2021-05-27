@@ -14,7 +14,7 @@ This is the base Nerves System configuration for the Raspberry Pi 4 Model B.
 | CPU                  | 1.5 GHz quad-core Cortex-A72 (64-bit mode) |
 | Memory               | 1 GB, 2 GB, 4 GB DRAM           |
 | Storage              | MicroSD                         |
-| Linux kernel         | 5.4 w/ Raspberry Pi patches     |
+| Linux kernel         | 5.10 w/ Raspberry Pi patches    |
 | IEx terminal         | HDMI and USB keyboard (can be changed to UART) |
 | GPIO, I2C, SPI       | Yes - [Elixir Circuits](https://github.com/elixir-circuits) |
 | ADC                  | No                              |
