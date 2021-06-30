@@ -20,3 +20,5 @@ erl_crash.dump
 /build.log
 /archive.log
 /.nerves
+/nerves_system_rpi4-*.tar.gz
+
