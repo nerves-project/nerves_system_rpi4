@@ -1,6 +1,6 @@
 --- ./deps/nerves_system_br/buildroot-2021.05/package/qt5/qt5webengine/qt5webengine.mk.orig	2021-06-30 00:41:23.310426008 -0700
 +++ ./deps/nerves_system_br/buildroot-2021.05/package/qt5/qt5webengine/qt5webengine.mk	2021-06-30 00:36:01.504617323 -0700
-@@ -29,6 +29,14 @@
+@@ -29,6 +29,15 @@
  
  QT5WEBENGINE_DEPENDENCIES += host-libpng host-libnss libnss
  
@@ -10,6 +10,7 @@
 +
 +ifeq ($(BR2_PACKAGE_QT5BASE_JPEG),y)
 +	QT5WEBENGINE_DEPENDENCIES += host-libjpeg
++	QT5WEBENGINE_CONF_OPTS += WEBENGINE_CONFIG+=use_system_libjpeg
 +endif
 +
  QT5WEBENGINE_CONF_OPTS += WEBENGINE_CONFIG+=use_system_ffmpeg
