@@ -13,7 +13,7 @@ defmodule NervesSystemRpi4.MixProject do
       app: @app,
       version: @version,
       elixir: "~> 1.6",
-      compilers: [:elixir_make] ++ Mix.compilers() ++ [:nerves_package],
+      compilers: Mix.compilers() ++ [:nerves_package],
       nerves_package: nerves_package(),
       description: description(),
       package: package(),
