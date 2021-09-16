@@ -5,6 +5,7 @@
 source "$NERVES_DEFCONFIG_DIR/package/yubico_piv_tool/Config.in"
 source "$NERVES_DEFCONFIG_DIR/package/avrdude_ly/Config.in"
 source "$NERVES_DEFCONFIG_DIR/package/openocd_ly/Config.in"
+source "$NERVES_DEFCONFIG_DIR/package/openocd_11/Config.in"
 source "$NERVES_DEFCONFIG_DIR/package/openocd_esp32/Config.in"
 source "$NERVES_DEFCONFIG_DIR/package/openocd_nrf9160/Config.in"
 source "$NERVES_DEFCONFIG_DIR/package/openocd_pn7362/Config.in"
