@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.16.3
+
+* Improvements
+  * Enable USB gadget interface on boot so that the USB-C cable can provide
+    power and networking like the RPi Zero and RPi 3A.
+
 ## v1.16.2
 
 This release updates Erlang/OTP from 24.0.3 to 24.0.5 and Buildroot from 2021.05
