@@ -58,10 +58,12 @@ enable_uart=1
 
 # Custom settings for DFRobot HDMI display
 [HDMI:0]
-hdmi_cvt=1080 1920 48 3 0 0 0
+config_hdmi_boost=10
 hdmi_driver=2
 hdmi_group=2
+hdmi_force_hotplug=1
 hdmi_mode=87
+hdmi_timings=1080 0 48 32 80 1920 0 5 8 12 0 0 0 48 0 144386000 3
 display_rotate=3
 framebuffer_width=480
 framebuffer_height=270
