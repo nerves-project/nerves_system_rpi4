@@ -2,8 +2,11 @@
 
 set -e
 
-mkdir -p /github/home/.nerves/dl
-make dist
+mkdir -p /github/workspace/.nerves
+
+mkdir -p /github/workspace/nerves-buildroot-cache
+
+NERVES_BR_DL_DIR=/github/workspace/nerves-buildroot-cache make dist
 
 set +e
 

@@ -38,6 +38,18 @@ If you need custom modifications to this system for your device, clone this
 repository and update as described in [Making custom
 systems](https://hexdocs.pm/nerves/systems.html#customizing-your-own-nerves-system)
 
+## Rebuilding individual buildroot package
+
+Compilation times for a full system build take over an hour. Individual packages can be rebuilt using buildroot locally.
+In order to rebuild the `openocd_ly` package cleanly, after a local full build, the following commands can be run:
+
+```
+mix nerves.system.shell
+make openocd_ly-dirclean
+make
+exit
+```
+
 ## Supported WiFi devices
 
 The base image includes drivers for the onboard Raspberry Pi 4 wifi module

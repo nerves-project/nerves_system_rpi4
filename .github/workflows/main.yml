@@ -12,17 +12,17 @@ jobs:
           submodules: true
       - name: Cache buildroot downloads
         id: cache-downloads
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
-          path: /home/runner/work/_temp/_github_home/.nerves/dl
-          key: buildroot-cache-${{ hashFiles(format('{0}{1}', github.workspace, '/mix.lock')) }}
+          path: |
+            nerves-buildroot-cache 
+          key: buildroot-cache-${{ hashFiles('VERSION', 'mix.lock') }}
           restore-keys: |
             buildroot-cache-
             buidroot-dl-
       - name: Clear Artifacts
         run: |
-          rm -rf /github/home/.nerves/dl/ly11_system_rpi4-portable*
-          rm -rf /github/home/.nerves/artifacts/ly11_system_rpi4-portable*
+          rm -rf $GITHUB_WORKSPACE/nerves-buildroot-cache/ly11_system_rpi4-portable*
       - name: Build
         uses: ./.github/actions/build
       - name: Upload S3

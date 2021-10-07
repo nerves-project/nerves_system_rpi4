@@ -17,6 +17,8 @@ VERSION_NUM = `cat $(VERSION_FILE)`
 
 PACKAGE_VERSION_NUM = $(shell cat PACKAGES-VERSION)
 
+NERVES_BR_DL_DIR ?= $HOME/.nerves/dl
+
 ARTIFACT_DIR := $(BASE_PATH)/.nerves/artifacts/$(PRJTAG)-portable-$(VERSION_NUM)
 
 .PHONY: clean
@@ -46,6 +48,7 @@ sync-packages:  package-$(PACKAGE_VERSION_NUM)
 
 build-prep:
 	-mkdir -p ./.nerves/artifacts
+	-mkdir -p $(NERVES_BR_DL_DIR)
 
 .PHONY: lint
 lint:
@@ -66,11 +69,11 @@ install-prep: install-hex-rebar install-nerves-bootstrap sync-packages
 
 .PHONY: build
 build: versions install-prep install-dependencies build-prep
-	mix compile
+	NERVES_BR_DL_DIR=$(NERVES_BR_DL_DIR) mix compile
 
 .PHONY: build-test-app
 build-test-app: install-prep
-	cd ./plt_test_app && ./keys.sh &&  MIX_TARGET=$(MIX_TARGET) mix do deps.get, firmware
+	cd ./plt_test_app && ./keys.sh &&  MIX_TARGET=$(MIX_TARGET) NERVES_BR_DL_DIR=$(NERVES_BR_DL_DIR) mix do deps.get, firmware
 
 .PHONY: dist-test-app
 dist-test-app: build-test-app dist-prep
@@ -86,7 +89,7 @@ dist-clean:
 .PHONY: dist
 dist: dist-prep build
 	[ -d $(ARTIFACT_DIR) ] && \
-		MIX_TARGET=$(MIX_TARGET) mix nerves.artifact $(PRJTAG) --path $(DIST) \
+		MIX_TARGET=$(MIX_TARGET) NERVES_BR_DL_DIR=$(NERVES_BR_DL_DIR) mix nerves.artifact $(PRJTAG) --path $(DIST) \
 		|| echo 'Skipping previously artifact'
 
 .PHONY: docker
