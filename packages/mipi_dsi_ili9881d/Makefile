@@ -1,10 +1,21 @@
-obj-m += $(addsuffix .o, $(notdir $(basename $(filter-out %.mod.c, $(wildcard $(BR2_EXTERNAL_KERNEL_MODULES_PATH)/*.c)))))
-ccflags-y := -DDEBUG -g -std=gnu99 -Werror -Wno-declaration-after-statement -Wframe-larger-than=1000000000
+#
+# Zhangqun Ming <north_sea@qq.com>
+# Copyright (c) 2021 Seeed Studio
+#
+# MIT License
+#
+KVERSION ?= $(shell uname -r)
 
-.PHONY: all clean
+obj-m := mipi_dsi.o
+mipi_dsi-objs := mipi_dsi_drv.o		\
+				 touch_panel.o		\
+				 panel-ili9881d.o
 
 all:
-	$(MAKE) -C '/lib/modules/$(shell uname -r)/build' M='$(PWD)' modules
+	$(MAKE) -C /lib/modules/$(KVERSION)/build M=$(PWD) modules
+
+install:
+	$(MAKE) -C /lib/modules/$(KVERSION)/build M=$(shell pwd) modules_install
 
 clean:
-	$(MAKE) -C '$(LINUX_DIR)' M='$(PWD)' clean
+	$(MAKE) -C /lib/modules/$(KVERSION)/build M=$(PWD) clean
