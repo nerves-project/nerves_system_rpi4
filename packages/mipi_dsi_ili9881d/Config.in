@@ -1,0 +1,5 @@
+config BR2_PACKAGE_MIPI_DSI_ILI9881D
+	bool "mipi_dsi_ili9881d"
+	depends on BR2_LINUX_KERNEL
+	help
+		See README.adoc
