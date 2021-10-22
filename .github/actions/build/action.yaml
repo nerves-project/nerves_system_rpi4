@@ -1,0 +1,5 @@
+name: "Build"
+description: "Build Rpi4 system"
+runs:
+  using: "docker"
+  image: "Dockerfile"
