@@ -17,7 +17,7 @@ VERSION_NUM = `cat $(VERSION_FILE)`
 
 PACKAGE_VERSION_NUM = $(shell cat PACKAGES-VERSION)
 
-NERVES_BR_DL_DIR ?= $HOME/.nerves/dl
+NERVES_BR_DL_DIR ?= $(HOME)/.nerves/dl
 
 ARTIFACT_DIR := $(BASE_PATH)/.nerves/artifacts/$(PRJTAG)-portable-$(VERSION_NUM)
 
@@ -36,6 +36,7 @@ versions:
 		@echo "VERSION_TAG: $(VERSION_TAG)"
 		@echo "PACKAGE_VERSION_NUM: $(PACKAGE_VERSION_NUM)"
 		@echo "$(ARTIFACT_DIR)"
+
 
 package-%:
 	wget "https://github.com/bcdevices/ly10-buildroot-packages/releases/download/v$*/buildroot-packages-$*.tar.gz"
@@ -73,7 +74,7 @@ build: versions install-prep install-dependencies build-prep
 
 .PHONY: build-test-app
 build-test-app: install-prep
-	cd ./plt_test_app && ./keys.sh &&  MIX_TARGET=$(MIX_TARGET) NERVES_BR_DL_DIR=$(NERVES_BR_DL_DIR) mix do deps.get, firmware
+	cd ./plt_test_app && ./keys.sh &&  MIX_TARGET=$(MIX_TARGET) NERVES_BR_DL_DIR=$(NERVES_BR_DL_DIR)  mix do deps.get, firmware
 
 .PHONY: dist-test-app
 dist-test-app: build-test-app dist-prep
