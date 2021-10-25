@@ -135,7 +135,7 @@ defmodule LY11SystemRpi4.MixProject do
 
   defp build_runner_opts() do
     # Download source files first to get download errors right away.
-    [make_args: primary_site() ++ ["source", "all"]]
+    [make_args: primary_site() ++ ["source", "all", "legal-info", "pkg-stats"]]
   end
 
   defp primary_site() do
