@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 set -e
 
@@ -7,12 +7,10 @@ function slim_down_dri_libs() {
     pushd $STAGING_DIR/usr/lib/dri/
 
     for f in *.so; do
-        if [ "$f" = "v3d_dri.so" ]; then
-            continue
+        if [[ "$f" != "v3d_dri.so" ]]; then
+            rm "$f"
+            ln -s v3d_dri.so "$f"
         fi
-
-        rm "$f"
-        ln -s v3d_dri.so "$f"
     done
 
     popd
