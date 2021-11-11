@@ -65,6 +65,7 @@ hdmi_force_hotplug=1
 hdmi_mode=87
 hdmi_timings=1080 0 48 32 80 1920 0 5 8 12 0 0 0 48 0 144386000 3
 display_rotate=3
+extra_transpose_buffer=2
 framebuffer_width=480
 framebuffer_height=270
 framebuffer_depth=16
