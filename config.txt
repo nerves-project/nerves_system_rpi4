@@ -59,7 +59,9 @@ enable_uart=1
 # Custom settings for DFRobot HDMI display
 [HDMI:0]
 config_hdmi_boost=10
-hdmi_driver=2
+# Normal DVI mode (no sound)
+hdmi_drive=1
+# DMT group
 hdmi_group=2
 hdmi_force_hotplug=1
 hdmi_mode=87
@@ -71,7 +73,13 @@ framebuffer_height=270
 framebuffer_depth=16
 
 [HDMI:1]
-#
+# Normal DVI mode (no sound)
+hdmi_drive=1
+hdmi_force_hotplug=1
+# CEA group
+hdmi_group=1
+# VGA (640x480/60Hz/4:3)
+hdmi_mode=1
 
 [all]
 max_framebuffer_width=1080
