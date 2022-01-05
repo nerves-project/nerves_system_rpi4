@@ -39,7 +39,7 @@ dtparam=audio=on
 #dtoverlay=w1-gpio-pullup,gpiopin=4
 
 # Support USB gadget mode on the USB-C port
-dtoverlay=dwc2
+#dtoverlay=dwc2
 
 # The ramoops overlay works with the pstore driver to preserve crash
 # information across reboots in DRAM
@@ -51,7 +51,9 @@ enable_uart=1
 # Enable DRM VC4 V3D driver on top of the dispmanx display stack
 # NOTE: enabling V3D driver breaks fbdev display rotation
 #dtoverlay=vc4-fkms-v3d
-#max_framebuffers=2
+
+# Force 2 framebuffers
+max_framebuffers=2
 
 # Enable CAN Bus
 #dtoverlay=mcp2515-can0,oscillator=8000000,interrupt=25
