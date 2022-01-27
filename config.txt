@@ -83,6 +83,17 @@ hdmi_group=1
 # VGA (640x480/60Hz/4:3)
 hdmi_mode=1
 
+[EDID=HLT-WS_FHDOLED]
+hdmi_group=2
+hdmi_mode=82
+max_framebuffer_height=1920
+max_usb_current=1
+config_hdmi_boost=10
+hdmi_group=2
+hdmi_force_hotplug=1
+hdmi_mode=87
+hdmi_timings=1080 1 26 4 50 1920 1 8 2 6 0 0 0 60 0 135580000 3
+
 [all]
 max_framebuffer_width=1080
 max_framebuffer_height=1920
