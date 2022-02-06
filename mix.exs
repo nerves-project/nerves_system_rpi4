@@ -56,7 +56,9 @@ defmodule NervesSystemRpi4.MixProject do
         {"TARGET_ARCH", "aarch64"},
         {"TARGET_CPU", "cortex_a72"},
         {"TARGET_OS", "linux"},
-        {"TARGET_ABI", "gnu"}
+        {"TARGET_ABI", "gnu"},
+        {"TARGET_GCC_FLAGS",
+         "-mabi=lp64 -fstack-protector-strong -mcpu=cortex-a72 -fPIE -pie -Wl,-z,now -Wl,-z,relro"}
       ],
       checksum: package_files()
     ]
@@ -64,7 +66,7 @@ defmodule NervesSystemRpi4.MixProject do
 
   defp deps do
     [
-      {:nerves, "~> 1.5.4 or ~> 1.6.0 or ~> 1.7.3", runtime: false},
+      {:nerves, "~> 1.5.4 or ~> 1.6.0 or ~> 1.7.15", runtime: false},
       {:nerves_system_br, "1.18.4", runtime: false},
       {:nerves_toolchain_aarch64_nerves_linux_gnu, "~> 1.5.0", runtime: false},
       {:nerves_system_linter, "~> 0.4", only: [:dev, :test], runtime: false},
