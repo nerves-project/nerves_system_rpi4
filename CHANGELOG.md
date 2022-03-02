@@ -12,6 +12,17 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+## v1.18.3
+
+This is a Buildroot and Erlang bug and security fix release. It should be a low
+risk upgrade from the previous release.
+
+* Updated dependencies
+  * [nerves_system_br v1.18.5](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.18.5)
+
+* Changes
+  * Enable Prolific PL2303 USB->Serial driver
+
 ## v1.18.2
 
 This is a Buildroot and Erlang bug fix release. It should be a low risk upgrade
