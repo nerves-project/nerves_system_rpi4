@@ -5,6 +5,9 @@ jobs:
   build:
     name:  Build Nerves system
     runs-on: ubuntu-latest
+    container: nervesproject/nerves_system_br:1.18.5
+    env:
+      ELIXIR_VERSION: 1.12.3-otp-24
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -15,16 +18,26 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
-            nerves-buildroot-cache 
+            ~/.nerves/dl
           key: buildroot-cache-${{ hashFiles('VERSION', 'mix.lock') }}
           restore-keys: |
             buildroot-cache-
             buidroot-dl-
-      - name: Build
-        uses: ./.github/actions/build
+      - name: Setup elixir
+        run: |
+          wget https://repo.hex.pm/builds/elixir/v$ELIXIR_VERSION.zip 
+          unzip -d /usr/local/elixir v$ELIXIR_VERSION.zip
+          echo "/usr/local/elixir/bin" >> $GITHUB_PATH
+      - name: build
+        run: |
+          apt-get update
+          apt-get install -y u-boot-tools
+          mkdir -p /root/local
+          mkdir -p /root/empty
+          make dist
       - name: Clear Artifacts
         run: |
-          rm -rf $GITHUB_WORKSPACE/nerves-buildroot-cache/ly11_system_rpi4-portable*
+          rm -rf $HOME/.nerves/dl/ly11_system_rpi4-portable*
       - name: Upload S3
         uses: jakejarvis/s3-sync-action@master
         with:
@@ -34,7 +47,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'us-west-1'
-          SOURCE_DIR: 'dist'
+          SOURCE_DIR: $HOME/.nerves/dl
       - name: Upload Artifacts
         if: contains(github.ref, 'tags')
         uses: svenstaro/upload-release-action@v2
@@ -52,5 +65,5 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'us-west-1'
-          SOURCE_DIR:  'nerves-buildroot-cache'
+          SOURCE_DIR: $HOME/.nerves/dl 
         continue-on-error: true
