@@ -3,7 +3,7 @@ on: push
 
 jobs:
   build:
-    name:  Build Nerves system
+    name: Build Nerves system
     runs-on: ubuntu-latest
     container: nervesproject/nerves_system_br:1.18.5
     env:
@@ -25,9 +25,12 @@ jobs:
             buidroot-dl-
       - name: Setup elixir
         run: |
-          wget https://repo.hex.pm/builds/elixir/v$ELIXIR_VERSION.zip 
+          wget https://repo.hex.pm/builds/elixir/v$ELIXIR_VERSION.zip
           unzip -d /usr/local/elixir v$ELIXIR_VERSION.zip
           echo "/usr/local/elixir/bin" >> $GITHUB_PATH
+      - name: Clear Existing Artifacts
+        run: |
+          rm -rf $HOME/.nerves/dl/ly11_system_rpi4-portable*
       - name: build
         run: |
           apt-get update
@@ -35,10 +38,17 @@ jobs:
           mkdir -p /root/local
           mkdir -p /root/empty
           make dist
-      - name: Clear Artifacts
-        run: |
-          rm -rf $HOME/.nerves/dl/ly11_system_rpi4-portable*
-      - name: Upload S3
+      - name: Upload S3 Artifacts
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --acl public-read --follow-symlinks
+        env:
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'us-west-1'
+          SOURCE_DIR: dist
+      - name: Upload S3 Cache
         uses: jakejarvis/s3-sync-action@master
         with:
           args: --acl public-read --follow-symlinks
@@ -48,12 +58,16 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'us-west-1'
           SOURCE_DIR: $HOME/.nerves/dl
+      - name: List Artifacts
+        if: contains(github.ref, 'tags')
+        run: |
+          ls $HOME/.nerves/dl/ly11_system_rpi4-portable*
       - name: Upload Artifacts
         if: contains(github.ref, 'tags')
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: dist/*
+          file: /github/home/.nerves/dl/ly11_system_rpi4-portable*
           file_glob: true
           tag: ${{ github.ref }}
       - name: Upload Buildroot cache
@@ -65,5 +79,5 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'us-west-1'
-          SOURCE_DIR: $HOME/.nerves/dl 
+          SOURCE_DIR: $HOME/.nerves/dl
         continue-on-error: true
