@@ -31,6 +31,9 @@ jobs:
       - name: Clear Existing Artifacts
         run: |
           rm -rf $HOME/.nerves/dl/ly11_system_rpi4-portable*
+      - name: Configure Git Options
+        run: |
+          git config --global url."https://github.com/".insteadOf git://github.com/
       - name: build
         run: |
           apt-get update
