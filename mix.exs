@@ -18,7 +18,7 @@ defmodule LY11SystemRpi4.MixProject do
       description: description(),
       package: package(),
       deps: deps(),
-      aliases: [loadconfig: [&bootstrap/1], docs: ["docs", &copy_images/1]],
+      aliases: [loadconfig: [&bootstrap/1]],
       docs: docs(),
       preferred_cli_env: %{
         docs: :docs,
@@ -68,7 +68,7 @@ defmodule LY11SystemRpi4.MixProject do
   defp deps do
     [
       {:nerves, "~> 1.5.4 or ~> 1.6.0 or ~> 1.7.15", runtime: false},
-      {:nerves_system_br, "1.18.6", runtime: false},
+      {:nerves_system_br, "1.19.0", runtime: false},
       {:nerves_toolchain_aarch64_nerves_linux_gnu, "~> 1.5.0", runtime: false},
       {:nerves_system_linter, "~> 0.4", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.22", only: :docs, runtime: false}
@@ -85,6 +85,7 @@ defmodule LY11SystemRpi4.MixProject do
     [
       extras: ["README.md", "CHANGELOG.md"],
       main: "readme",
+      assets: "assets",
       source_ref: "v#{@version}",
       source_url: @source_url,
       skip_undefined_reference_warnings_on: ["CHANGELOG.md"]
@@ -128,11 +129,6 @@ defmodule LY11SystemRpi4.MixProject do
       "VERSION",
       "PACKAGES-VERSION"
     ]
-  end
-
-  # Copy the images referenced by docs, since ex_doc doesn't do this.
-  defp copy_images(_) do
-    File.cp_r("assets", "doc/assets")
   end
 
   defp build_runner_opts() do
