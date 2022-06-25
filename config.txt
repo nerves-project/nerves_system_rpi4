@@ -29,6 +29,19 @@ dtparam=i2c_arm=on
 dtparam=spi=on
 dtparam=audio=on
 
+# Automatically load overlays for detected cameras
+camera_auto_detect=1
+
+# Automatically load overlays for detected DSI displays
+display_auto_detect=1
+
+# Enable DRM VC4 V3D driver
+dtoverlay=vc4-kms-v3d
+max_framebuffers=2
+
+# Disable compensation for displays with overscan
+disable_overscan=1
+
 # Comment this in or modify to enable OneWire
 # NOTE: check that the overlay that you specify is in the boot partition or
 #       this won't work.
@@ -43,13 +56,6 @@ dtoverlay=ramoops
 
 # Enable the UART (/dev/ttyS0)
 enable_uart=1
-
-# Enable the "Full KMS" DRM VC4 V3D driver
-dtoverlay=vc4-kms-v3d-pi4
-max_framebuffers=2
-
-# Uncomment if using the official 7" Raspberry Pi touchscreen
-#dtoverlay=vc4-kms-dsi-7inch
 
 [cm4]
 # Raspberry Pi CM4-only settings
