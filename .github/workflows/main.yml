@@ -37,7 +37,7 @@ jobs:
       - name: build
         run: |
           apt-get update
-          apt-get install -y u-boot-tools
+          apt-get install -y u-boot-tools mercurial
           mkdir -p /root/local
           mkdir -p /root/empty
           make dist

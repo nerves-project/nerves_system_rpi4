@@ -64,7 +64,7 @@ install-dependencies:
 	cp -n $(BASE_PATH)/patches/buildroot/*  $(BASE_PATH)/deps/nerves_system_br/patches/buildroot/
 
 install-nerves-bootstrap:
-	mix archive.install git https://github.com/nerves-project/nerves_bootstrap.git tag v1.10.2 --force
+	mix archive.install git https://github.com/nerves-project/nerves_bootstrap.git tag v1.11.2 --force
 
 .PHONY: install-prep
 install-prep: install-hex-rebar install-nerves-bootstrap sync-packages
