@@ -84,3 +84,11 @@ jobs:
           AWS_REGION: 'us-west-1'
           SOURCE_DIR: $HOME/.nerves/dl
         continue-on-error: true
+      - name: Report Status
+        if: always()
+        uses: ravsamhq/notify-slack-action@v2
+        with:
+          status: ${{ job.status }}
+          notify_when: 'failure'
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.CI_SLACK_WEBHOOK }}
