@@ -5,7 +5,7 @@ jobs:
   build:
     name: Build Nerves system
     runs-on: ubuntu-latest
-    container: nervesproject/nerves_system_br:1.21.4
+    container: nervesproject/nerves_system_br:1.22.3
     env:
       ELIXIR_VERSION: 1.14.2-otp-25 
     steps:

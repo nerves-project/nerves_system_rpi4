@@ -1,4 +1,4 @@
-FROM nervesproject/nerves_system_br:v1.21.4
+FROM nervesproject/nerves_system_br:1.22.3
 LABEL "com.github.actions.name"="Build System"
 LABEL "com.github.actions.description"="Build Nerves System"
 LABEL "com.github.actions.icon"="package"
@@ -11,14 +11,14 @@ LABEL "maintainer"="Blue Clover Devices"
 ENV ELIXIR_VERSION=1.14.2-otp-25
 
 RUN apt-get update && \
-    apt install -y \
-      subversion \
-      u-boot-tools \
-      ca-certificates
+  apt install -y \
+  subversion \
+  u-boot-tools \
+  ca-certificates
 
 #Install Elixir
 RUN wget https://repo.hex.pm/builds/elixir/v$ELIXIR_VERSION.zip && \
-      unzip -d /usr/local/elixir v$ELIXIR_VERSION.zip
+  unzip -d /usr/local/elixir v$ELIXIR_VERSION.zip
 
 ENV PATH /usr/local/elixir/bin:$PATH
 
