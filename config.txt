@@ -39,8 +39,15 @@ dtparam=audio=on
 # display_auto_detect=1
 
 # Enable DRM VC4 V3D driver
-# dtoverlay=vc4-kms-v3d
-# max_framebuffers=2
+dtoverlay=vc4-kms-v3d
+max_framebuffers=2
+
+# How much memory in MB to assign to the GPU on Pi models having
+# 256, 512 or 1024 MB total memory
+gpu_mem_256=100
+gpu_mem_512=100
+gpu_mem_1024=100
+
 
 # Disable compensation for displays with overscan
 # disable_overscan=1
@@ -65,47 +72,10 @@ enable_uart=1
 #dtoverlay=vc4-fkms-v3d
 
 # Force 2 framebuffers
-max_framebuffers=2
+#max_framebuffers=2
 
 # Enable CAN Bus
 #dtoverlay=mcp2515-can0,oscillator=8000000,interrupt=25
-
-# Custom settings for DFRobot HDMI display
-[HDMI:0]
-config_hdmi_boost=10
-# Normal DVI mode (no sound)
-hdmi_drive=1
-# DMT group
-hdmi_group=2
-hdmi_force_hotplug=1
-hdmi_mode=87
-hdmi_timings=1080 0 48 32 80 1920 0 5 8 12 0 0 0 48 0 144386000 3
-display_rotate=3
-extra_transpose_buffer=2
-framebuffer_width=480
-framebuffer_height=270
-framebuffer_depth=16
-
-[HDMI:1]
-# Normal DVI mode (no sound)
-hdmi_drive=1
-hdmi_force_hotplug=1
-# CEA group
-hdmi_group=1
-# VGA (640x480/60Hz/4:3)
-hdmi_mode=1
-
-[EDID=HLT-WS_FHDOLED]
-hdmi_group=2
-hdmi_mode=82
-max_framebuffer_height=1920
-max_usb_current=1
-config_hdmi_boost=10
-hdmi_group=2
-hdmi_force_hotplug=1
-hdmi_mode=87
-hdmi_timings=1080 1 26 4 50 1920 1 8 2 6 0 0 0 60 0 135580000 3
-display_rotate=1
 
 [all]
 max_framebuffer_width=1080
