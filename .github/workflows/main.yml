@@ -40,12 +40,8 @@ jobs:
           git config --global url."https://github.com/".insteadOf git://github.com/
       - name: build
         uses: ./.github/actions/build
-        #run: |
-        #  apt-get update
-        #  apt-get install -y u-boot-tools mercurial
-        #  mkdir -p /root/local
-        #  mkdir -p /root/empty
-        #  make dist
+        env:
+          DOCKER_TARGET: "dist"
       - name: Upload S3 Artifacts
         uses: jakejarvis/s3-sync-action@master
         with:

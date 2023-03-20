@@ -2,7 +2,10 @@
 ARG LY10_DOCKER_GO_VERSION="1.1.8"
 FROM ghcr.io/bcdevices/ly10-golang-nerves-jammy:v${LY10_DOCKER_GO_VERSION}
 
+#apt-get update
 #apt-get install -y u-boot-tools mercurial
+#mkdir -p /root/local
+#mkdir -p /root/empty
 
 WORKDIR /pltos
 COPY . /pltos
