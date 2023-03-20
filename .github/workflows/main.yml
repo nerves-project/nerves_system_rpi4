@@ -1,29 +1,18 @@
-# ly11-system-rpi4 main
-name: main
+name: A workflow for building Nerves system
 on: push
-
-env:
-  REGISTRY: ghcr.io
 
 jobs:
   build:
     name: Build Nerves system
     runs-on: ubuntu-latest
-    #container: nervesproject/nerves_system_br:1.22.3
     container:
       image: ghcr.io/bcdevices/ly10-golang-nerves-jammy:v1.1.8
       credentials:
         username: bcdbuildbot
         password: ${{ secrets.BUILDBOT_GITHUB_TOKEN }}
     steps:
-      #- name: Login to GitHub Container Registry
-      #  uses: docker/login-action@v2
-      #  with:
-      #    registry: ${{ env.REGISTRY }}
-      #    username: bcdbuildbot
-      #    password: ${{ secrets.BUILDBOT_GITHUB_TOKEN }}
       - name: Checkout code
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v2
         with:
           submodules: true
       - name: Cache buildroot downloads
@@ -45,9 +34,6 @@ jobs:
       - name: build
         run: |
           PATH="/usr/local/go/bin:/usr/local/elixir/bin:${PATH}" make dist
-        #uses: ./.github/actions/build
-        #env:
-        #  DOCKER_TARGET: "dist"
       - name: Upload S3 Artifacts
         uses: jakejarvis/s3-sync-action@master
         with:
