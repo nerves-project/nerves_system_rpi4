@@ -13,8 +13,8 @@ jobs:
     container:
       image: ghcr.io/bcdevices/ly10-golang-nerves-jammy:v1.1.8
       credentials:
-        username: ${{ github.actor }}
-        password: ${{ secrets.github_token }}
+        username: bcdbuildbot
+        password: ${{ secrets.BUILDBOT_GITHUB_TOKEN }}
     steps:
       #- name: Login to GitHub Container Registry
       #  uses: docker/login-action@v2
