@@ -1,16 +1,25 @@
-name: A workflow for building Nerves system
+name: main
 on: push
+
+env:
+  REGISTRY: ghcr.io
 
 jobs:
   build:
     name: Build Nerves system
     runs-on: ubuntu-latest
-    container: nervesproject/nerves_system_br:1.22.3
-    env:
-      ELIXIR_VERSION: 1.14.2-otp-25 
+    #container: nervesproject/nerves_system_br:1.22.3
+    #env:
+    #  ELIXIR_VERSION: 1.14.2-otp-25 
     steps:
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: bcdbuildbot
+          password: ${{ secrets.BUILDBOT_GITHUB_TOKEN }}
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.3.0
         with:
           submodules: true
       - name: Cache buildroot downloads
@@ -23,11 +32,6 @@ jobs:
           restore-keys: |
             buildroot-cache-
             buidroot-dl-
-      - name: Setup elixir
-        run: |
-          wget https://repo.hex.pm/builds/elixir/v$ELIXIR_VERSION.zip
-          unzip -d /usr/local/elixir v$ELIXIR_VERSION.zip
-          echo "/usr/local/elixir/bin" >> $GITHUB_PATH
       - name: Clear Existing Artifacts
         run: |
           rm -rf $HOME/.nerves/dl/ly11_system_rpi4-portable*
@@ -35,12 +39,13 @@ jobs:
         run: |
           git config --global url."https://github.com/".insteadOf git://github.com/
       - name: build
-        run: |
-          apt-get update
-          apt-get install -y u-boot-tools mercurial
-          mkdir -p /root/local
-          mkdir -p /root/empty
-          make dist
+        uses: ./.github/actions/build
+        #run: |
+        #  apt-get update
+        #  apt-get install -y u-boot-tools mercurial
+        #  mkdir -p /root/local
+        #  mkdir -p /root/empty
+        #  make dist
       - name: Upload S3 Artifacts
         uses: jakejarvis/s3-sync-action@master
         with:
