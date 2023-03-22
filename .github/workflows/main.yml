@@ -6,7 +6,7 @@ jobs:
     name: Build Nerves system
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/bcdevices/ly10-golang-nerves-jammy:v1.1.8
+      image: ghcr.io/bcdevices/ly10-golang-nerves-jammy:v1.1.9
       credentials:
         username: bcdbuildbot
         password: ${{ secrets.BUILDBOT_GITHUB_TOKEN }}
