@@ -1,5 +1,11 @@
 name: A workflow for building Nerves system
-on: push
+on:
+  push:
+    branch:
+      - main
+    tags:
+      - v*
+  #pull_request:
 
 jobs:
   build:
