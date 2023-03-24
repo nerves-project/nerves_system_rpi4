@@ -6,13 +6,13 @@ jobs:
     name: Build Nerves system
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/bcdevices/ly10-golang-nerves-jammy:v1.1.9
+      image: ghcr.io/bcdevices/ly10-golang-nerves-jammy:v1.1.11
       credentials:
         username: bcdbuildbot
         password: ${{ secrets.BUILDBOT_GITHUB_TOKEN }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           submodules: true
       - name: Cache buildroot downloads
@@ -33,7 +33,7 @@ jobs:
           git config --global url."https://github.com/".insteadOf git://github.com/
       - name: build
         run: |
-          PATH="/usr/local/go/bin:/usr/local/elixir/bin:${PATH}" make dist
+          PATH="/usr/local/elixir/bin:${PATH}" make dist
       - name: Upload S3 Artifacts
         uses: jakejarvis/s3-sync-action@master
         with:
