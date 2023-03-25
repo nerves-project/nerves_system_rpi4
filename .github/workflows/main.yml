@@ -12,7 +12,7 @@ jobs:
     name: Build Nerves system
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/bcdevices/ly10-golang-nerves-jammy:v1.1.11
+      image: ghcr.io/bcdevices/ly10-golang-nerves-jammy:v1.2.0
       credentials:
         username: bcdbuildbot
         password: ${{ secrets.BUILDBOT_GITHUB_TOKEN }}
@@ -39,7 +39,7 @@ jobs:
           git config --global url."https://github.com/".insteadOf git://github.com/
       - name: build
         run: |
-          PATH="/usr/local/elixir/bin:${PATH}" make dist
+          make dist
       - name: Upload S3 Artifacts
         uses: jakejarvis/s3-sync-action@master
         with:
