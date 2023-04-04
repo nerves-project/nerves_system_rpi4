@@ -21,24 +21,40 @@ jobs:
         uses: actions/checkout@v3
         with:
           submodules: true
-      - name: Cache buildroot downloads
-        id: cache-downloads
-        uses: actions/cache@v2
+      - name: Restore buildroot downloads
+        uses: actions/cache/restore@v3
+        id: cache
         with:
-          path: |
-            ~/.nerves/dl
+          path: ~/.nerves/dl
           key: buildroot-cache-${{ hashFiles('VERSION', 'mix.lock') }}
           restore-keys: |
-            buildroot-cache-
-            buidroot-dl-
+            buildroot-cache
+      - name: Setup elixir
+        run: |
+          wget https://repo.hex.pm/builds/elixir/v$ELIXIR_VERSION.zip
+          unzip -d /usr/local/elixir v$ELIXIR_VERSION.zip
+          echo "/usr/local/elixir/bin" >> $GITHUB_PATH
       - name: Clear Existing Artifacts
         run: |
           rm -rf $HOME/.nerves/dl/ly11_system_rpi4-portable*
       - name: Configure Git Options
         run: |
           git config --global url."https://github.com/".insteadOf git://github.com/
+      - name: Download buildroot sources
+        timeout-minutes: 60
+        run: |
+          apt-get update
+          apt-get install -y  mercurial u-boot-tools autoconf-archive gettext
+          make download-sources
+      - name: Cache buildroot downloads
+        uses: actions/cache/save@v3
+        with:
+          path: ~/.nerves/dl
+          key: buildroot-cache-${{ hashFiles('VERSION', 'mix.lock') }}
       - name: build
         run: |
+          mkdir -p /root/local
+          mkdir -p /root/empty
           make dist
       - name: Upload S3 Artifacts
         uses: jakejarvis/s3-sync-action@master
