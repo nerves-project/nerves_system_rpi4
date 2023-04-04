@@ -13,16 +13,14 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: true
-      - name: Cache buildroot downloads
-        id: cache-downloads
-        uses: actions/cache@v2
+      - name: Restore buildroot downloads
+        uses: actions/cache/restore@v3
+        id: cache
         with:
-          path: |
-            ~/.nerves/dl
+          path: ~/.nerves/dl
           key: buildroot-cache-${{ hashFiles('VERSION', 'mix.lock') }}
           restore-keys: |
-            buildroot-cache-
-            buidroot-dl-
+            buildroot-cache
       - name: Setup elixir
         run: |
           wget https://repo.hex.pm/builds/elixir/v$ELIXIR_VERSION.zip
@@ -34,10 +32,19 @@ jobs:
       - name: Configure Git Options
         run: |
           git config --global url."https://github.com/".insteadOf git://github.com/
-      - name: build
+      - name: Download buildroot sources
+        timeout-minutes: 60
         run: |
           apt-get update
-          apt-get install -y u-boot-tools mercurial
+          apt-get install -y  mercurial u-boot-tools autoconf-archive gettext
+          make download-sources
+      - name: Cache buildroot downloads
+        uses: actions/cache/save@v3
+        with:
+          path: ~/.nerves/dl
+          key: buildroot-cache-${{ hashFiles('VERSION', 'mix.lock') }}
+      - name: build
+        run: |
           mkdir -p /root/local
           mkdir -p /root/empty
           make dist

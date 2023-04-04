@@ -21,6 +21,8 @@ NERVES_BR_DL_DIR ?= $(HOME)/.nerves/dl
 
 ARTIFACT_DIR := $(BASE_PATH)/.nerves/artifacts/$(PRJTAG)-portable-$(VERSION_NUM)
 
+SYS_TMP_DIR :=  $(shell mktemp -d)
+
 .PHONY: clean
 clean:
 	-rm build.log
@@ -67,6 +69,12 @@ install-nerves-bootstrap:
 
 .PHONY: install-prep
 install-prep: install-hex-rebar install-nerves-bootstrap sync-packages
+
+.PHONY:  download-sources
+download-sources: build-prep install-prep install-dependencies
+	-mkdir $(SYS_TMP_DIR)
+	./deps/nerves_system_br/create-build.sh nerves_defconfig $(SYS_TMP_DIR)
+	cd $(SYS_TMP_DIR) && make source 
 
 .PHONY: build
 build: versions install-prep install-dependencies build-prep
