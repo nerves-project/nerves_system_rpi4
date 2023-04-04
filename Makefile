@@ -23,6 +23,10 @@ ARTIFACT_DIR := $(BASE_PATH)/.nerves/artifacts/$(PRJTAG)-portable-$(VERSION_NUM)
 
 SYS_TMP_DIR :=  $(shell mktemp -d)
 
+# Set to 1 to disable progress bar output when fetching artifacts (typically for CI)
+NERVES_LOG_DISABLE_PROGRESS_BAR ?= 1
+export NERVES_LOG_DISABLE_PROGRESS_BAR
+
 .PHONY: clean
 clean:
 	-rm build.log
