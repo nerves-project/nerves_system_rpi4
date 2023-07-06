@@ -24,9 +24,11 @@ disable_splash=1
 # configuration. See Target packages->Hardware handling->Firmware.
 gpu_mem=192
 
-# Enable I2C, SPI, and audio
+# Enable I2C and SPI
 dtparam=i2c_arm=on
 dtparam=spi=on
+
+# Enable audio (loads snd_bcm3825)
 dtparam=audio=on
 
 # Automatically load overlays for detected cameras
