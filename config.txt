@@ -13,8 +13,8 @@
 arm_64bit=1
 
 # We always use the same names. The variant is selected in fwup.conf.
-start_file=start.elf
-fixup_file=fixup.dat
+start_file=start4.elf
+fixup_file=fixup4.dat
 
 # Disable the boot rainbow
 disable_splash=1
