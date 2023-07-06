@@ -75,9 +75,7 @@ defmodule NervesSystemRpi4.MixProject do
   end
 
   defp description do
-    """
-    Nerves System - Raspberry Pi 4
-    """
+    "Nerves System - Raspberry Pi 4 (64-bits)"
   end
 
   defp docs do
