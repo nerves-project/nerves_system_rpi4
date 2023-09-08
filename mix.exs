@@ -104,7 +104,7 @@ defmodule NervesSystemRpi4.MixProject do
       "CHANGELOG.md",
       "cmdline.txt",
       "config.txt",
-      "fwup-revert.conf",
+      "fwup-ops.conf",
       "fwup.conf",
       "LICENSE",
       "linux-6.1.defconfig",
