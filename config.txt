@@ -41,6 +41,10 @@ display_auto_detect=1
 dtoverlay=vc4-kms-v3d
 max_framebuffers=2
 
+# Don't have the firmware create an initial video= setting in cmdline.txt.
+# Use the kernel's default instead.
+disable_fw_kms_setup=1
+
 # Disable compensation for displays with overscan
 disable_overscan=1
 
