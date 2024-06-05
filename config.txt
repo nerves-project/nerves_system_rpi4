@@ -12,10 +12,9 @@
 # Enable 64-bit support
 arm_64bit=1
 
-# We always use the same names, the real used variant is selected by
-# BR2_PACKAGE_RPI_FIRMWARE_{DEFAULT,X,CD} choice
-start_file=start.elf
-fixup_file=fixup.dat
+# We always use the same names. The variant is selected in fwup.conf.
+start_file=start4.elf
+fixup_file=fixup4.dat
 
 # Disable the boot rainbow
 disable_splash=1
@@ -25,15 +24,37 @@ disable_splash=1
 # configuration. See Target packages->Hardware handling->Firmware.
 gpu_mem=192
 
-# Enable I2C, SPI, and audio
+# Enable I2C and SPI
 dtparam=i2c_arm=on
 dtparam=spi=on
+
+# Enable audio (loads snd_bcm3825)
 dtparam=audio=on
+
+# Automatically load overlays for detected cameras
+camera_auto_detect=1
+
+# Automatically load overlays for detected DSI displays
+display_auto_detect=1
+
+# Enable DRM VC4 V3D driver
+dtoverlay=vc4-kms-v3d
+max_framebuffers=2
+
+# Don't have the firmware create an initial video= setting in cmdline.txt.
+# Use the kernel's default instead.
+disable_fw_kms_setup=1
+
+# Disable compensation for displays with overscan
+disable_overscan=1
 
 # Comment this in or modify to enable OneWire
 # NOTE: check that the overlay that you specify is in the boot partition or
 #       this won't work.
 #dtoverlay=w1-gpio-pullup,gpiopin=4
+
+# Support USB gadget mode on the USB-C port
+dtoverlay=dwc2
 
 # The ramoops overlay works with the pstore driver to preserve crash
 # information across reboots in DRAM
@@ -41,10 +62,6 @@ dtoverlay=ramoops
 
 # Enable the UART (/dev/ttyS0)
 enable_uart=1
-
-# Enable DRM VC4 V3D driver on top of the dispmanx display stack
-dtoverlay=vc4-fkms-v3d
-max_framebuffers=2
 
 [cm4]
 # Raspberry Pi CM4-only settings

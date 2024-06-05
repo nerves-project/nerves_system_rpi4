@@ -1,30 +1,34 @@
 exec: &exec
   name: build-tools/nerves-system-br
-  version: 1.16.0
-  elixir: 1.12.1-otp-24
+  version: 1.27.2
+  elixir: 1.16.2-otp-26
 
 version: 2.1
 
 orbs:
-  build-tools: nerves-project/build-tools@0.1.4
+  build-tools: nerves-project/build-tools@0.2.3
 
 workflows:
   version: 2
   build_test_deploy:
     jobs:
-      - build-tools/build-system:
+      - build-tools/get-br-dependencies:
           exec:
             <<: *exec
           context: org-global
           filters:
             tags:
               only: /.*/
-      - build-tools/build-test:
+      - build-tools/build-system:
           exec:
             <<: *exec
+          resource-class: large
           context: org-global
           requires:
-            - build-tools/build-system
+            - build-tools/get-br-dependencies
+          filters:
+            tags:
+              only: /.*/
       - build-tools/deploy-system:
           exec:
             <<: *exec

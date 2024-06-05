@@ -18,7 +18,7 @@ defmodule NervesSystemRpi4.MixProject do
       description: description(),
       package: package(),
       deps: deps(),
-      aliases: [loadconfig: [&bootstrap/1], docs: ["docs", &copy_images/1]],
+      aliases: [loadconfig: [&bootstrap/1]],
       docs: docs(),
       preferred_cli_env: %{
         docs: :docs,
@@ -57,7 +57,9 @@ defmodule NervesSystemRpi4.MixProject do
         {"TARGET_ARCH", "aarch64"},
         {"TARGET_CPU", "cortex_a72"},
         {"TARGET_OS", "linux"},
-        {"TARGET_ABI", "gnu"}
+        {"TARGET_ABI", "gnu"},
+        {"TARGET_GCC_FLAGS",
+         "-mabi=lp64 -fstack-protector-strong -mcpu=cortex-a72 -fPIE -pie -Wl,-z,now -Wl,-z,relro"}
       ],
       checksum: package_files()
     ]
@@ -66,24 +68,23 @@ defmodule NervesSystemRpi4.MixProject do
   defp deps do
     [
       {:elixir_make, "~> 0.4", runtime: false},
-      {:nerves, "~> 1.5.4 or ~> 1.6.0 or ~> 1.7.3", runtime: false},
-      {:nerves_system_br, "1.16.0", runtime: false},
-      {:nerves_toolchain_aarch64_nerves_linux_gnu, "~> 1.4.2", runtime: false},
+      {:nerves, "~> 1.5.4 or ~> 1.6.0 or ~> 1.7.15 or ~> 1.8", runtime: false},
+      {:nerves_system_br, "1.27.2", runtime: false},
+      {:nerves_toolchain_aarch64_nerves_linux_gnu, "~> 13.2.0", runtime: false},
       {:nerves_system_linter, "~> 0.4", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.22", only: :docs, runtime: false}
     ]
   end
 
   defp description do
-    """
-    Nerves System - Raspberry Pi 4
-    """
+    "Nerves System - Raspberry Pi 4 (64-bits)"
   end
 
   defp docs do
     [
       extras: ["README.md", "CHANGELOG.md"],
       main: "readme",
+      assets: "assets",
       source_ref: "v#{@version}",
       source_url: @source_url,
       skip_undefined_reference_warnings_on: ["CHANGELOG.md"]
@@ -93,7 +94,7 @@ defmodule NervesSystemRpi4.MixProject do
   defp package do
     [
       files: package_files(),
-      licenses: ["Apache 2.0"],
+      licenses: ["Apache-2.0"],
       links: %{"GitHub" => @source_url}
     ]
   end
@@ -105,10 +106,10 @@ defmodule NervesSystemRpi4.MixProject do
       "CHANGELOG.md",
       "cmdline.txt",
       "config.txt",
-      "fwup-revert.conf",
+      "fwup-ops.conf",
       "fwup.conf",
       "LICENSE",
-      "linux-5.4.defconfig",
+      "linux-6.1.defconfig",
       "mix.exs",
       "nerves_defconfig",
       "post-build.sh",
@@ -119,15 +120,15 @@ defmodule NervesSystemRpi4.MixProject do
     ]
   end
 
-  # Copy the images referenced by docs, since ex_doc doesn't do this.
-  defp copy_images(_) do
-    File.cp_r("assets", "doc/assets")
+  defp build_runner_opts() do
+    # Download source files first to get download errors right away.
+    [make_args: primary_site() ++ ["source", "all", "legal-info"]]
   end
 
-  defp build_runner_opts() do
+  defp primary_site() do
     case System.get_env("BR2_PRIMARY_SITE") do
       nil -> []
-      primary_site -> [make_args: ["BR2_PRIMARY_SITE=#{primary_site}"]]
+      primary_site -> ["BR2_PRIMARY_SITE=#{primary_site}"]
     end
   end
 

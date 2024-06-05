@@ -1,5 +1,419 @@
 # Changelog
 
+This project does NOT follow semantic versioning. The version increases as
+follows:
+
+1. Major version updates are breaking updates to the build infrastructure.
+   These should be very rare.
+2. Minor version updates are made for every major Buildroot release. This
+   may also include Erlang/OTP and Linux kernel updates. These are made four
+   times a year shortly after the Buildroot releases.
+3. Patch version updates are made for Buildroot minor releases, Erlang/OTP
+   releases, and Linux kernel updates. They're also made to fix bugs and add
+   features to the build infrastructure.
+
+## v1.27.1
+
+This is a security/bug fix update.
+
+* Changes
+  * Enable the `wpa_supplicant` option for allow wired 802.1x authentication
+
+* Package updates
+  * [Erlang/OTP 26.2.5](https://erlang.org/download/OTP-26.2.5.README)
+  * [Buildroot 2024.02.1](https://lore.kernel.org/buildroot/87jzlp9u5e.fsf@48ers.dk/T/)
+
+## v1.27.0
+
+This is a major Buildroot update.
+
+Please see the [nerves_system_br v1.27.0 release notes](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.26.0)
+for upgrade instructions if you've forked this system.
+
+* Changes
+  * The `libcamera` and `rpicam_apps` packages have been replaced with the
+    Raspberry Pi-forked versions for better compatibility. Please see
+    `nerves_system_br` release notes.
+  * Add back `CONFIG_RASPBERRYPI_GPIOMEM` to support the `dht` library.
+
+* Updated dependencies
+  * [nerves_system_br v1.27.0](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.27.0)
+  * [Buildroot 2024.02](https://lore.kernel.org/buildroot/87msrczp4z.fsf@48ers.dk/)
+  * [Erlang/OTP 26.2.3](https://erlang.org/download/OTP-26.2.3.README)
+
+## v1.26.0
+
+This is a major Buildroot update.
+
+Please see the [nerves_system_br v1.26.0 release notes](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.26.0)
+for upgrade instructions if you've forked this system.
+
+* New features
+  * Add the imx296 overlays for the Raspberry Pi Global Shutter Camera
+
+* Updated dependencies
+  * [Erlang/OTP 26.2.2](https://erlang.org/download/OTP-26.2.2.README)
+  * [nerves_system_br v1.26.1](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.26.1)
+  * [Buildroot 2023.11.1](https://lore.kernel.org/buildroot/87cyu2k2gu.fsf@48ers.dk/T/)
+
+## v1.25.1
+
+This is a security/bug fix update.
+
+ Package updates
+  * [Erlang/OTP 26.2.1](https://erlang.org/download/OTP-26.2.1.README)
+  * [nerves_heart 2.3.0](https://github.com/nerves-project/nerves_heart/releases/tag/v2.3.0)
+
+## v1.25.0
+
+This is a major Buildroot and toolchain update that also adds support for using
+Scenic without customizing the system.
+
+Please see [nerves_system_br v1.25.0 release notes](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.25.0)
+for upgrade instructions if you've forked this system.
+
+* New features
+  * Add libcairo for [Scenic](https://github.com/ScenicFramework/scenic) support
+
+* Updated dependencies
+  * [nerves_system_br v1.25.2](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.25.2)
+  * [Buildroot 2023.08.4](https://lore.kernel.org/buildroot/87o7f6t7fs.fsf@48ers.dk/T/)
+  * [Erlang/OTP 26.1.2](https://erlang.org/download/OTP-26.1.2.README)
+
+## v1.24.1
+
+This is a security/bug fix update.
+
+* Package updates
+  * [nerves_system_br v1.24.1](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.24.1)
+  * [Erlang/OTP 26.1.1](https://erlang.org/download/OTP-26.1.1.README)
+  * [Buildroot 2023.05.3](https://lore.kernel.org/buildroot/87h6ngup34.fsf@48ers.dk/T/)
+
+## v1.24.0
+
+This is a Buildroot version update that appears to mostly contain bug and
+security fixes. It should be a low risk upgrade from v1.23.2.
+
+* New features
+  * Support factory reset, preventing firmware reverts. See [Nerves.Runtime.FwupOps](https://hexdocs.pm/nerves_runtime/Nerves.Runtime.FwupOps.html)
+
+* Updated dependencies
+  * [nerves_system_br v1.24.0](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.24.0)
+  * [Buildroot 2023.05.2](https://lore.kernel.org/buildroot/87ledrkrpp.fsf@48ers.dk/T/), [2023.05.1](https://lore.kernel.org/buildroot/87351m8qm4.fsf@48ers.dk/T/), [2023.05](https://lore.kernel.org/buildroot/87r0qn2c77.fsf@48ers.dk/T/)
+  * [Erlang/OTP 26.1](https://erlang.org/download/OTP-26.1.README)
+
+## v1.23.2
+
+* Fixes
+  * This fixes a rare aarch64 Erlang JIT bug that affects NervesKey users. See
+    `nerves_system_br` notes.
+
+* Updated dependencies
+  * [nerves_system_br v1.23.3](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.23.3)
+
+## v1.23.1
+
+This is a bug and security fix update. It should be a low risk upgrade.
+
+* Fixes
+  * Fix CTRL+R over ssh
+
+* Updated dependencies
+  * [nerves_system_br v1.23.2](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.23.2)
+  * [Buildroot 2023.02.2](https://lore.kernel.org/buildroot/87y1je6wva.fsf@48ers.dk/T/)
+
+## v1.23.0
+
+This is a major update that brings in Erlang/OTP 26, Buildroot 2023.02.2, Linux
+6.1, and Raspberry Pi firmware updates.
+
+* New features
+  * The Raspberry Pi cameras now work with libcamera. The libcamera apps are
+    included. See the [Raspberry Pi Camera docs](https://www.raspberrypi.com/documentation/computers/camera_software.html).
+  * CA certificates are included for OTP 26.
+
+* Changes
+  * The `start.elf` and `fixup.dat` files were renamed to `start4.elf` and
+    `fixup4.dat` to be more consistent with the RaspberryPi OS naming.
+
+* Updated dependencies
+  * [nerves_system_br v1.23.1](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.23.1)
+  * [Buildroot 2023.02.2](https://lore.kernel.org/buildroot/87wn03ifbl.fsf@48ers.dk/T/)
+  * [Erlang/OTP 26.0.2](https://erlang.org/download/OTP-26.0.2.README)
+  * Linux 6.1.21 (Raspberry Pi Linux tag 1.20230405)
+
+## v1.22.2
+
+This is a bug and security fix update. It should be a low risk upgrade from
+v1.22.1.
+
+* Updated dependencies
+  * [nerves_system_br v1.22.5](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.22.5)
+  * [Buildroot 2022.11.3](https://lore.kernel.org/buildroot/878rfuxbxx.fsf@dell.be.48ers.dk/T/)
+
+## v1.22.1
+
+This is a bug fix and Erlang version bump from 25.2 to 25.2.3. It should be a
+low risk upgrade from v1.22.0.
+
+* Fixes
+  * Set Erlang crash dump timer to 5 seconds, so if an Erlang crash dump does
+    happen, it will run for at most 5 seconds. See erlinit.conf.
+
+* Updated dependencies
+  * [nerves_system_br v1.22.3](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.22.3)
+  * [Buildroot 2022.11.1](https://lore.kernel.org/buildroot/87ilh4dvax.fsf@dell.be.48ers.dk/T/#u)
+
+## v1.22.0
+
+This is a Buildroot version update that appears to mostly contain bug and
+security fixes. It should be a low risk upgrade from v1.21.2.
+
+* Updated dependencies
+  * [nerves_system_br v1.22.1](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.22.1)
+  * [Buildroot 2022.11](http://lists.busybox.net/pipermail/buildroot/2022-December/656980.html)
+  * GCC 12.2
+
+## v1.21.2
+
+* Changes
+  * Two Buildroot patch updates and an Erlang minor version update
+  * Nerves Heart v2.0 is now included. Nerves Heart connects the Erlang runtime
+    to a hardware watchdog. v2.0 has numerous updates to improve information
+    that you can get and also has more safeguards to avoid conditions that could
+    cause a device to hang forever.
+
+* Updated dependencies
+  * linux 5.15.78 (RPi 1.20221104)
+  * [nerves_system_br v1.21.6](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.21.6)
+  * [Erlang/OTP 25.2](https://erlang.org/download/OTP-25.2.README)
+  * [Buildroot 2022.08.3](https://lore.kernel.org/buildroot/87r0x7z5cw.fsf@dell.be.48ers.dk/T/#u)
+  * [nerves_heart v2.0.2](https://github.com/nerves-project/nerves_heart/releases/tag/v2.0.2)
+
+## v1.21.1
+
+* Changes
+  * Fix regression when building on x86_64 Linux where wrong toolchain was used.
+  * Reduce first-time Linux kernel download by using tarball source
+
+* Updated dependencies
+  * [nerves_system_br v1.21.2](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.21.2)
+  * [Erlang/OTP 25.1.2](https://erlang.org/download/OTP-25.1.2.README)
+
+## v1.21.0
+
+This release includes a major change to the display drivers by switching to the
+full KMS drivers. Raspberry Pi OS has been using these and they appear to be a
+big improvement over the fake KMS ones. This might cause some application
+changes or updates if you're using the display.
+
+* Changes
+  * Switch from using the fake KMS to full KMS device drivers for using the
+    display. See [PR #155](https://github.com/nerves-project/nerves_system_rpi4/pull/155).
+  * Support aarch64 Linux builds
+  * Add libdtc to support runtime loading of device tree overlays
+
+* Updated dependencies
+  * [nerves_system_br v1.21.1](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.21.1)
+    and also see [nerves_system_br v1.21.0](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.21.0)
+  * [Buildroot 2022.08.1](http://lists.busybox.net/pipermail/buildroot/2022-October/652816.html)
+  * [Erlang/OTP 25.1.1](https://erlang.org/download/OTP-25.1.1.README)
+
+## v1.20.2
+
+* Updated dependencies
+  * [nerves_system_br v1.20.6](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.20.6)
+  * [Erlang/OTP 25.0.4](https://erlang.org/download/OTP-25.0.4.README)
+  * [Buildroot 2022.05.2](http://lists.busybox.net/pipermail/buildroot/2022-August/650546.html)
+  * Also see [Buildroot 2022.05.1 changes](http://lists.busybox.net/pipermail/buildroot/2022-July/647814.html)
+
+## v1.20.1
+
+* Updated dependencies
+  * [nerves_system_br v1.20.4](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.20.4)
+  * [Erlang/OTP 25.0.3](https://erlang.org/download/OTP-25.0.3.README)
+
+## v1.20.0
+
+This release updates to Buildroot 2022.05, Linux 5.15.32 (from Linux 5.10) and
+uses GCC 11.3 (from GCC 10.3). The Linux kernel upgrade could introduce a
+regression, so please verify hardware-specific functionality in your firmware.
+
+If you have cloned this repository for a custom system, please make sure that
+you have `CONFIG_NOP_USB_XCEIV=y` in your Linux kernel configuration.
+
+* Updated dependencies
+  * [nerves_system_br v1.20.3](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.20.3)
+  * [Buildroot 2022.05](http://lists.busybox.net/pipermail/buildroot/2022-June/644349.html)
+  * [Erlang/OTP 25.0.2](https://erlang.org/download/OTP-25.0.2.README)
+
+## v1.19.0
+
+This release updates to Buildroot 2022.02.1 and OTP 25.0. While this should be
+an easy update for most projects, many programs have been updated. Please review
+the changes in the updated dependencies for details.
+
+The OTP 25 JIT starts by default with this release.
+
+* Updated dependencies
+  * [nerves_system_br v1.19.0](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.19.0)
+  * [Buildroot 2022.02.1](http://lists.busybox.net/pipermail/buildroot/2022-April/640712.html). Also see [Buildroot 2022.02](http://lists.busybox.net/pipermail/buildroot/2022-March/638160.html)
+  * [Erlang/OTP 25.0](https://erlang.org/download/OTP-25.0.README)
+
+## v1.18.4
+
+This release bumps Erlang to 24.3.2 and should be a low risk upgrade from the
+previous release.
+
+* Changes
+  * Pull in upstream Linux SquashFS patch to improve file system performance
+
+* Updated dependencies
+  * [nerves_system_br v1.18.6](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.18.6)
+
+## v1.18.3
+
+This is a Buildroot and Erlang bug and security fix release. It should be a low
+risk upgrade from the previous release.
+
+* Updated dependencies
+  * [nerves_system_br v1.18.5](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.18.5)
+
+* Changes
+  * Enable Prolific PL2303 USB->Serial driver
+
+## v1.18.2
+
+This is a Buildroot and Erlang bug fix release. It should be a low risk upgrade
+from the previous release.
+
+* Updated dependencies
+  * [nerves_system_br v1.18.4](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.18.4)
+
+* Changes
+  * Specify CPU-specific flags when compiling NIFs and ports. This fixes an
+    issue where some optimizations could not be enabled in NIFs even though it
+    should be possible to have them. E.g., ARM NEON support for CPUs that have
+    it.
+  * Build the Wireguard kernel driver. This is a small device driver that
+    enables a number of VPN-based use cases.
+
+## v1.18.1
+
+* Updated dependencies
+  * [nerves_system_br v1.18.3](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.18.3)
+
+* Changes
+  * Programs that use OpenMP will run now. The OpenMP shared library
+    (`libgomp.so`) was supplied by the toolchain, but not copied.
+
+## v1.18.0
+
+This release updates to Buildroot 2021.11 and OTP 24.2. If you have made a
+custom system, please review the `nerves_system_br` [release
+notes](https://github.com/nerves-project/nerves_system_br/blob/v1.18.2/CHANGELOG.md#v1180)
+since Buildroot 2021.11 changed some Raspberry Pi firmware options.
+
+* Updated dependencies
+  * [nerves_system_br v1.18.2](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.18.2)
+  * [Buildroot 2021.11](http://lists.busybox.net/pipermail/buildroot/2021-December/629911.html)
+  * [Erlang/OTP 24.2](https://erlang.org/download/OTP-24.2.README)
+  * [Raspberry Pi WiFi firmware](https://github.com/RPi-Distro/firmware-nonfree/blob/bullseye/debian/changelog)
+  * Linux 5.10.88 with Raspberry Pi patches
+  * GCC 10.3
+
+* Improvements
+  * Support for the `dl.nerves-project.org` backup site. Due to a GitHub outage
+    in November, there was a 2 day period of failing builds since some packages
+    could not be downloaded. We implemented the backup site to prevent this in
+    the future. This update is in the `nerves_defconfig`.
+  * Use new build ORB on CircleCI. This ORB will shorten build times to fit in
+    CircleCI's new free tier limits. Please update if building your own systems.
+
+## v1.17.3
+
+* Updated dependencies
+  * [nerves_system_br v1.17.4](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.17.4)
+  * [Buildroot 2021.08.2](http://lists.busybox.net/pipermail/buildroot/2021-November/628323.html)
+  * [Erlang/OTP 24.1.7](https://erlang.org/download/OTP-24.1.7.README).
+
+## v1.17.2
+
+This release updates the Linux kernel from 5.4 to 5.10 to follow the Raspberry
+Pi OS.
+
+* Fixes
+  * Shrink down the artifact size by reducing duplication in DRI libraries. This
+    has no runtime change.
+
+* Updated dependencies
+  * [nerves_system_br v1.17.3](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.17.3)
+  * [Erlang/OTP 24.1.4](https://erlang.org/download/OTP-24.1.4.README).
+  * Linux 5.10.63 with Raspberry Pi patches
+
+## v1.17.1
+
+This is a security/bug fix patch release. It should be safe to update for
+everyone.
+
+* Updated dependencies
+  * [nerves_system_br v1.17.1](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.17.1)
+  * [Buildroot 2021.08.1](http://lists.busybox.net/pipermail/buildroot/2021-October/625642.html)
+  * [Erlang/OTP 24.1.2](https://erlang.org/download/OTP-24.1.2.README)
+
+* Fixes
+  * Fix the sysfs thermal interface driver. It was incorrectly unselected in the
+    Linux kernel options previously.
+
+* Improvements
+  * Include software versioning and licensing info (see legal-info directory in
+    artifact)
+
+## v1.17.0
+
+This release updates to Buildroot 2021.08 and OTP 24.1. If you have made a
+custom system off this one, please review the `nerves_system_br v1.17.0` release
+notes.
+
+* Updated dependencies
+  * [nerves_system_br v1.17.0](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.17.0)
+  * [Buildroot 2021.08](http://lists.busybox.net/pipermail/buildroot/2021-September/622072.html)
+  * [Erlang/OTP 24.1](https://erlang.org/download/OTP-24.1.README)
+
+## v1.16.3
+
+* Improvements
+  * Enable USB gadget interface on boot so that the USB-C cable can provide
+    power and networking like the RPi Zero and RPi 3A.
+
+## v1.16.2
+
+This release updates Erlang/OTP from 24.0.3 to 24.0.5 and Buildroot from 2021.05
+to 2021.05.1. Both of these are security/bug fix updates. This is expected to be
+a safe upgrade from v1.16.1 for all users.
+
+* Updated dependencies
+  * [nerves_system_br v1.16.4](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.16.1)
+  * [Erlang/OTP 24.0.5](https://erlang.org/download/OTP-24.0.5.README)
+
+* Improvements
+  * Beta support for using a `runtime.exs` script for runtime configuration.
+  * Added a `provision` task to the `fwup.config` to enable re-provisioning a
+    MicroSD card without changing its contents.
+  * Adds a default `/etc/sysctl.conf` that enables use of ICMP in Erlang. This
+    requires `nerves_runtime v0.11.5` or later to automatically load the sysctl
+    variables. With it using `:gen_udp` to send/receive ICMP will "just work".
+    It also makes it easier to add other sysctl variables if needed.
+
+## v1.16.1
+
+This release updates Nerves Toolchains to v1.4.3 and OTP 24.0.3. It should be safe for everyone to apply.
+
+* Updated dependencies
+  * [nerves_system_br v1.16.1](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.16.1)
+  * [Erlang/OTP 24.0.3](https://erlang.org/download/OTP-24.0.3.README)
+  * [nerves toolchains v1.4.3](https://github.com/nerves-project/toolchains/releases/tag/v1.4.3)
+
 ## v1.16.0
 
 This release updates to Buildroot 2021.05 and OTP 24.0.2. If you have made a
