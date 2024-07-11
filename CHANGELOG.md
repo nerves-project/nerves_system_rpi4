@@ -12,6 +12,30 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+## v1.28.0
+
+This is a major Erlang and Buildroot.
+
+Please see the [nerves_system_br v1.28.0 release notes](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.28.0)
+for upgrade instructions if you've forked this system.
+
+* Changes
+  * Elixir 1.17 and Erlang/OTP 27 support
+  * Reduce copy/pasted definitions in the `fwup.conf` by extracting them to
+    `fwup_include/fwup-common.conf`. (No functional changes)
+
+* Fixes
+  * The serial numbers returned by `Nerves.Runtime.serial_number/0` now contain
+    the whole serial number. If you forked this system, check the
+    `boardid.config` and `erlinit.config` for the changes and to keep the
+    hostname the same.
+
+* Updated dependencies
+  * Linux 6.6.31 (Raspberry Pi stable_20240529 release)
+  * [nerves_system_br v1.28.1](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.28.1)
+  * [Buildroot 2024.05](https://lore.kernel.org/buildroot/87bk46tjk2.fsf@dell.be.48ers.dk/T/)
+  * [Erlang/OTP 27.0](https://erlang.org/download/OTP-27.0.README)
+
 ## v1.27.1
 
 This is a security/bug fix update.
