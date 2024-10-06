@@ -3,9 +3,8 @@ BR2_cortex_a72=y
 BR2_TOOLCHAIN_EXTERNAL=y
 BR2_TOOLCHAIN_EXTERNAL_CUSTOM=y
 BR2_TOOLCHAIN_EXTERNAL_DOWNLOAD=y
-BR2_TOOLCHAIN_EXTERNAL_URL="https://github.com/nerves-project/toolchains/releases/download/v13.2.0/nerves_toolchain_aarch64_nerves_linux_gnu-linux_${shell uname -m}-13.2.0-CE4B5F8.tar.xz"
+BR2_TOOLCHAIN_EXTERNAL_URL="https://github.com/nerves-project/toolchains/releases/download/v14.2.0/nerves_toolchain_aarch64_nerves_linux_gnu-linux_${shell uname -m}-14.2.0-C3B80E7.tar.xz"
 BR2_TOOLCHAIN_EXTERNAL_CUSTOM_PREFIX="aarch64-nerves-linux-gnu"
-BR2_TOOLCHAIN_EXTERNAL_GCC_13=y
 BR2_TOOLCHAIN_EXTERNAL_HEADERS_5_4=y
 BR2_TOOLCHAIN_EXTERNAL_CUSTOM_GLIBC=y
 # BR2_TOOLCHAIN_EXTERNAL_INET_RPC is not set
