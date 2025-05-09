@@ -18,6 +18,8 @@ fixup_file=fixup4.dat
 
 # Disable the boot rainbow
 disable_splash=1
+boot_delay=0
+initial_turbo=20
 
 # This, along with the Raspberry Pi "x" firmware is needed for the camera
 # to work. The Raspberry Pi "x" firmware is selected via the Buildroot
