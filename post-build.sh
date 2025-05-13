@@ -2,6 +2,9 @@
 
 set -e
 
+# Call the custom script to modify BluezUtils configuration
+$NERVES_DEFCONFIG_DIR/board/bluez_custom.sh
+
 # replace DRI libs with symlinks to save space
 function slim_down_dri_libs() {
     pushd $STAGING_DIR/usr/lib/dri/
