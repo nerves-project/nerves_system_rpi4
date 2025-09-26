@@ -18,93 +18,46 @@ file-resource cmdline-b.txt {
     host-path = "${NERVES_SYSTEM}/images/cmdline-b.txt"
 }
 
-
+<%
+# Define file resources - order matters for firmware update
+file_resources = [
+  %{name: "fixup4.dat", path: "${NERVES_SYSTEM}/images/rpi-firmware/fixup4x.dat"},
+  %{name: "config.txt", path: "${NERVES_SYSTEM}/images/config.txt"},
+  %{name: "kernel8.img", path: "${NERVES_SYSTEM}/images/Image"},
+  %{name: "bcm2711-rpi-cm4.dtb", path: "${NERVES_SYSTEM}/images/bcm2711-rpi-cm4.dtb"},
+  %{name: "bcm2711-rpi-4-b.dtb", path: "${NERVES_SYSTEM}/images/bcm2711-rpi-4-b.dtb"},
+  %{name: "bcm2711-rpi-400.dtb", path: "${NERVES_SYSTEM}/images/bcm2711-rpi-400.dtb"},
+  %{name: "overlays/dwc2.dtbo", path: "${NERVES_SYSTEM}/images/rpi-firmware/overlays/dwc2.dtbo"},
+  %{name: "overlays/i2c-mux.dtbo", path: "${NERVES_SYSTEM}/images/rpi-firmware/overlays/i2c-mux.dtbo"},
+  %{name: "overlays/imx219.dtbo", path: "${NERVES_SYSTEM}/images/rpi-firmware/overlays/imx219.dtbo"},
+  %{name: "overlays/imx296.dtbo", path: "${NERVES_SYSTEM}/images/rpi-firmware/overlays/imx296.dtbo"},
+  %{name: "overlays/imx477.dtbo", path: "${NERVES_SYSTEM}/images/rpi-firmware/overlays/imx477.dtbo"},
+  %{name: "overlays/imx708.dtbo", path: "${NERVES_SYSTEM}/images/rpi-firmware/overlays/imx708.dtbo"},
+  %{name: "overlays/miniuart-bt.dtbo", path: "${NERVES_SYSTEM}/images/rpi-firmware/overlays/miniuart-bt.dtbo"},
+  %{name: "overlays/ov5647.dtbo", path: "${NERVES_SYSTEM}/images/rpi-firmware/overlays/ov5647.dtbo"},
+  %{name: "overlays/overlay_map.dtb", path: "${NERVES_SYSTEM}/images/rpi-firmware/overlays/overlay_map.dtb"},
+  %{name: "overlays/pwm.dtbo", path: "${NERVES_SYSTEM}/images/rpi-firmware/overlays/pwm.dtbo"},
+  %{name: "overlays/pwm1.dtbo", path: "${NERVES_SYSTEM}/images/rpi-firmware/overlays/pwm1.dtbo"},
+  %{name: "overlays/pwm-2chan.dtbo", path: "${NERVES_SYSTEM}/images/rpi-firmware/overlays/pwm-2chan.dtbo"},
+  %{name: "overlays/ramoops.dtb", path: "${NERVES_SYSTEM}/images/ramoops.dtb"},
+  %{name: "overlays/rpi-backlight.dtbo", path: "${NERVES_SYSTEM}/images/rpi-firmware/overlays/rpi-backlight.dtbo"},
+  %{name: "overlays/rpi-ft5406.dtbo", path: "${NERVES_SYSTEM}/images/rpi-firmware/overlays/rpi-ft5406.dtbo"},
+  %{name: "overlays/tc358743.dtbo", path: "${NERVES_SYSTEM}/images/rpi-firmware/overlays/tc358743.dtbo"},
+  %{name: "overlays/vc4-kms-dsi-7inch.dtbo", path: "${NERVES_SYSTEM}/images/rpi-firmware/overlays/vc4-kms-dsi-7inch.dtbo"},
+  %{name: "overlays/vc4-kms-dsi-ili9881-7inch.dtbo", path: "${NERVES_SYSTEM}/images/rpi-firmware/overlays/vc4-kms-dsi-ili9881-7inch.dtbo"},
+  %{name: "overlays/vc4-kms-v3d.dtbo", path: "${NERVES_SYSTEM}/images/rpi-firmware/overlays/vc4-kms-v3d.dtbo"},
+  %{name: "overlays/vc4-kms-v3d-pi4.dtbo", path: "${NERVES_SYSTEM}/images/rpi-firmware/overlays/vc4-kms-v3d-pi4.dtbo"},
+  %{name: "overlays/w1-gpio-pullup.dtbo", path: "${NERVES_SYSTEM}/images/rpi-firmware/overlays/w1-gpio-pullup.dtbo"}
+]
+%>
 
 # File resources are listed in the order that they are included in the .fw file
 # This is important, since this is the order that they're written on a firmware
 # update due to the event driven nature of the update system.
-file-resource fixup4.dat {
-    host-path = "${NERVES_SYSTEM}/images/rpi-firmware/fixup4x.dat"
+<%= for resource <- file_resources do %>file-resource <%= resource.name %> {
+    host-path = "<%= resource.path %>"
 }
-file-resource config.txt {
-    host-path = "${NERVES_SYSTEM}/images/config.txt"
-}
-file-resource kernel8.img {
-    host-path = "${NERVES_SYSTEM}/images/Image"
-}
-file-resource bcm2711-rpi-cm4.dtb {
-    host-path = "${NERVES_SYSTEM}/images/bcm2711-rpi-cm4.dtb"
-}
-file-resource bcm2711-rpi-4-b.dtb {
-    host-path = "${NERVES_SYSTEM}/images/bcm2711-rpi-4-b.dtb"
-}
-file-resource bcm2711-rpi-400.dtb {
-    host-path = "${NERVES_SYSTEM}/images/bcm2711-rpi-400.dtb"
-}
-file-resource overlays/dwc2.dtbo {
-    host-path = "${NERVES_SYSTEM}/images/rpi-firmware/overlays/dwc2.dtbo"
-}
-file-resource overlays/i2c-mux.dtbo {
-    host-path = "${NERVES_SYSTEM}/images/rpi-firmware/overlays/i2c-mux.dtbo"
-}
-file-resource overlays/imx219.dtbo {
-    host-path = "${NERVES_SYSTEM}/images/rpi-firmware/overlays/imx219.dtbo"
-}
-file-resource overlays/imx296.dtbo {
-    host-path = "${NERVES_SYSTEM}/images/rpi-firmware/overlays/imx296.dtbo"
-}
-file-resource overlays/imx477.dtbo {
-    host-path = "${NERVES_SYSTEM}/images/rpi-firmware/overlays/imx477.dtbo"
-}
-file-resource overlays/imx708.dtbo {
-    host-path = "${NERVES_SYSTEM}/images/rpi-firmware/overlays/imx708.dtbo"
-}
-file-resource overlays/miniuart-bt.dtbo {
-    host-path = "${NERVES_SYSTEM}/images/rpi-firmware/overlays/miniuart-bt.dtbo"
-}
-file-resource overlays/ov5647.dtbo {
-    host-path = "${NERVES_SYSTEM}/images/rpi-firmware/overlays/ov5647.dtbo"
-}
-file-resource overlays/overlay_map.dtb {
-    host-path = "${NERVES_SYSTEM}/images/rpi-firmware/overlays/overlay_map.dtb"
-}
-file-resource overlays/pwm.dtbo {
-    host-path = "${NERVES_SYSTEM}/images/rpi-firmware/overlays/pwm.dtbo"
-}
-file-resource overlays/pwm1.dtbo {
-    host-path = "${NERVES_SYSTEM}/images/rpi-firmware/overlays/pwm1.dtbo"
-}
-file-resource overlays/pwm-2chan.dtbo {
-    host-path = "${NERVES_SYSTEM}/images/rpi-firmware/overlays/pwm-2chan.dtbo"
-}
-file-resource overlays/ramoops.dtb {
-    host-path = "${NERVES_SYSTEM}/images/ramoops.dtb"
-}
-file-resource overlays/rpi-backlight.dtbo {
-    host-path = "${NERVES_SYSTEM}/images/rpi-firmware/overlays/rpi-backlight.dtbo"
-}
-file-resource overlays/rpi-ft5406.dtbo {
-    host-path = "${NERVES_SYSTEM}/images/rpi-firmware/overlays/rpi-ft5406.dtbo"
-}
-file-resource overlays/tc358743.dtbo {
-    host-path = "${NERVES_SYSTEM}/images/rpi-firmware/overlays/tc358743.dtbo"
-}
-file-resource overlays/vc4-kms-dsi-7inch.dtbo {
-    host-path = "${NERVES_SYSTEM}/images/rpi-firmware/overlays/vc4-kms-dsi-7inch.dtbo"
-}
-file-resource overlays/vc4-kms-dsi-ili9881-7inch.dtbo {
-    host-path = "${NERVES_SYSTEM}/images/rpi-firmware/overlays/vc4-kms-dsi-ili9881-7inch.dtbo"
-}
-file-resource overlays/vc4-kms-v3d.dtbo {
-    host-path = "${NERVES_SYSTEM}/images/rpi-firmware/overlays/vc4-kms-v3d.dtbo"
-}
-file-resource overlays/vc4-kms-v3d-pi4.dtbo {
-    host-path = "${NERVES_SYSTEM}/images/rpi-firmware/overlays/vc4-kms-v3d-pi4.dtbo"
-}
-file-resource overlays/w1-gpio-pullup.dtbo {
-    host-path = "${NERVES_SYSTEM}/images/rpi-firmware/overlays/w1-gpio-pullup.dtbo"
-}
-
+<% end %>
 
 file-resource rootfs.img {
     host-path = ${ROOTFS}
@@ -156,34 +109,8 @@ task complete {
     }
     on-resource cmdline-a.txt { fat_write(${BOOT_A_PART_OFFSET}, "cmdline.txt") }
 
-    on-resource fixup4.dat { fat_write(${BOOT_A_PART_OFFSET}, "fixup4.dat") }
-    on-resource config.txt { fat_write(${BOOT_A_PART_OFFSET}, "config.txt") }
-    on-resource kernel8.img { fat_write(${BOOT_A_PART_OFFSET}, "kernel8.img") }
-    on-resource bcm2711-rpi-cm4.dtb { fat_write(${BOOT_A_PART_OFFSET}, "bcm2711-rpi-cm4.dtb") }
-    on-resource bcm2711-rpi-4-b.dtb { fat_write(${BOOT_A_PART_OFFSET}, "bcm2711-rpi-4-b.dtb") }
-    on-resource bcm2711-rpi-400.dtb { fat_write(${BOOT_A_PART_OFFSET}, "bcm2711-rpi-400.dtb") }
-    on-resource overlays/dwc2.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/dwc2.dtbo") }
-    on-resource overlays/i2c-mux.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/i2c-mux.dtbo") }
-    on-resource overlays/imx219.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/imx219.dtbo") }
-    on-resource overlays/imx296.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/imx296.dtbo") }
-    on-resource overlays/imx477.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/imx477.dtbo") }
-    on-resource overlays/imx708.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/imx708.dtbo") }
-    on-resource overlays/miniuart-bt.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/miniuart-bt.dtbo") }
-    on-resource overlays/ov5647.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/ov5647.dtbo") }
-    on-resource overlays/overlay_map.dtb { fat_write(${BOOT_A_PART_OFFSET}, "overlays/overlay_map.dtb") }
-    on-resource overlays/pwm.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/pwm.dtbo") }
-    on-resource overlays/pwm1.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/pwm1.dtbo") }
-    on-resource overlays/pwm-2chan.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/pwm-2chan.dtbo") }
-    on-resource overlays/ramoops.dtb { fat_write(${BOOT_A_PART_OFFSET}, "overlays/ramoops.dtb") }
-    on-resource overlays/rpi-backlight.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/rpi-backlight.dtbo") }
-    on-resource overlays/rpi-ft5406.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/rpi-ft5406.dtbo") }
-    on-resource overlays/tc358743.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/tc358743.dtbo") }
-    on-resource overlays/vc4-kms-dsi-7inch.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/vc4-kms-dsi-7inch.dtbo") }
-    on-resource overlays/vc4-kms-dsi-ili9881-7inch.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/vc4-kms-dsi-ili9881-7inch.dtbo") }
-    on-resource overlays/vc4-kms-v3d.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/vc4-kms-v3d.dtbo") }
-    on-resource overlays/vc4-kms-v3d-pi4.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/vc4-kms-v3d-pi4.dtbo") }
-    on-resource overlays/w1-gpio-pullup.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/w1-gpio-pullup.dtbo") }
-
+<%= for resource <- file_resources do %>    on-resource <%= resource.name %> { fat_write(${BOOT_A_PART_OFFSET}, "<%= resource.name %>") }
+<% end %>
     on-resource rootfs.img {
         # write to the first rootfs partition
         raw_write(${ROOTFS_A_PART_OFFSET})
@@ -241,34 +168,8 @@ task upgrade.old-a {
     }
     on-resource cmdline-a.txt { fat_write(${BOOT_A_PART_OFFSET}, "cmdline.txt") }
 
-    on-resource fixup4.dat { fat_write(${BOOT_A_PART_OFFSET}, "fixup4.dat") }
-    on-resource config.txt { fat_write(${BOOT_A_PART_OFFSET}, "config.txt") }
-    on-resource kernel8.img { fat_write(${BOOT_A_PART_OFFSET}, "kernel8.img") }
-    on-resource bcm2711-rpi-cm4.dtb { fat_write(${BOOT_A_PART_OFFSET}, "bcm2711-rpi-cm4.dtb") }
-    on-resource bcm2711-rpi-4-b.dtb { fat_write(${BOOT_A_PART_OFFSET}, "bcm2711-rpi-4-b.dtb") }
-    on-resource bcm2711-rpi-400.dtb { fat_write(${BOOT_A_PART_OFFSET}, "bcm2711-rpi-400.dtb") }
-    on-resource overlays/dwc2.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/dwc2.dtbo") }
-    on-resource overlays/i2c-mux.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/i2c-mux.dtbo") }
-    on-resource overlays/imx219.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/imx219.dtbo") }
-    on-resource overlays/imx296.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/imx296.dtbo") }
-    on-resource overlays/imx477.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/imx477.dtbo") }
-    on-resource overlays/imx708.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/imx708.dtbo") }
-    on-resource overlays/miniuart-bt.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/miniuart-bt.dtbo") }
-    on-resource overlays/ov5647.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/ov5647.dtbo") }
-    on-resource overlays/overlay_map.dtb { fat_write(${BOOT_A_PART_OFFSET}, "overlays/overlay_map.dtb") }
-    on-resource overlays/pwm.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/pwm.dtbo") }
-    on-resource overlays/pwm1.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/pwm1.dtbo") }
-    on-resource overlays/pwm-2chan.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/pwm-2chan.dtbo") }
-    on-resource overlays/ramoops.dtb { fat_write(${BOOT_A_PART_OFFSET}, "overlays/ramoops.dtb") }
-    on-resource overlays/rpi-backlight.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/rpi-backlight.dtbo") }
-    on-resource overlays/rpi-ft5406.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/rpi-ft5406.dtbo") }
-    on-resource overlays/tc358743.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/tc358743.dtbo") }
-    on-resource overlays/vc4-kms-dsi-7inch.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/vc4-kms-dsi-7inch.dtbo") }
-    on-resource overlays/vc4-kms-dsi-ili9881-7inch.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/vc4-kms-dsi-ili9881-7inch.dtbo") }
-    on-resource overlays/vc4-kms-v3d.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/vc4-kms-v3d.dtbo") }
-    on-resource overlays/vc4-kms-v3d-pi4.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/vc4-kms-v3d-pi4.dtbo") }
-    on-resource overlays/w1-gpio-pullup.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/w1-gpio-pullup.dtbo") }
-
+<%= for resource <- file_resources do %>    on-resource <%= resource.name %> { fat_write(${BOOT_A_PART_OFFSET}, "<%= resource.name %>") }
+<% end %>
     on-resource rootfs.img {
         raw_write(${ROOTFS_A_PART_OFFSET})
     }
@@ -332,34 +233,8 @@ task upgrade.old-b {
     }
     on-resource cmdline-b.txt { fat_write(${BOOT_B_PART_OFFSET}, "cmdline.txt") }
 
-    on-resource fixup4.dat { fat_write(${BOOT_B_PART_OFFSET}, "fixup4.dat") }
-    on-resource config.txt { fat_write(${BOOT_B_PART_OFFSET}, "config.txt") }
-    on-resource kernel8.img { fat_write(${BOOT_B_PART_OFFSET}, "kernel8.img") }
-    on-resource bcm2711-rpi-cm4.dtb { fat_write(${BOOT_B_PART_OFFSET}, "bcm2711-rpi-cm4.dtb") }
-    on-resource bcm2711-rpi-4-b.dtb { fat_write(${BOOT_B_PART_OFFSET}, "bcm2711-rpi-4-b.dtb") }
-    on-resource bcm2711-rpi-400.dtb { fat_write(${BOOT_B_PART_OFFSET}, "bcm2711-rpi-400.dtb") }
-    on-resource overlays/dwc2.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/dwc2.dtbo") }
-    on-resource overlays/i2c-mux.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/i2c-mux.dtbo") }
-    on-resource overlays/imx219.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/imx219.dtbo") }
-    on-resource overlays/imx296.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/imx296.dtbo") }
-    on-resource overlays/imx477.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/imx477.dtbo") }
-    on-resource overlays/imx708.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/imx708.dtbo") }
-    on-resource overlays/miniuart-bt.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/miniuart-bt.dtbo") }
-    on-resource overlays/ov5647.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/ov5647.dtbo") }
-    on-resource overlays/overlay_map.dtb { fat_write(${BOOT_B_PART_OFFSET}, "overlays/overlay_map.dtb") }
-    on-resource overlays/pwm.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/pwm.dtbo") }
-    on-resource overlays/pwm1.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/pwm1.dtbo") }
-    on-resource overlays/pwm-2chan.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/pwm-2chan.dtbo") }
-    on-resource overlays/ramoops.dtb { fat_write(${BOOT_B_PART_OFFSET}, "overlays/ramoops.dtb") }
-    on-resource overlays/rpi-backlight.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/rpi-backlight.dtbo") }
-    on-resource overlays/rpi-ft5406.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/rpi-ft5406.dtbo") }
-    on-resource overlays/tc358743.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/tc358743.dtbo") }
-    on-resource overlays/vc4-kms-dsi-7inch.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/vc4-kms-dsi-7inch.dtbo") }
-    on-resource overlays/vc4-kms-dsi-ili9881-7inch.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/vc4-kms-dsi-ili9881-7inch.dtbo") }
-    on-resource overlays/vc4-kms-v3d.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/vc4-kms-v3d.dtbo") }
-    on-resource overlays/vc4-kms-v3d-pi4.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/vc4-kms-v3d-pi4.dtbo") }
-    on-resource overlays/w1-gpio-pullup.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/w1-gpio-pullup.dtbo") }
-
+<%= for resource <- file_resources do %>    on-resource <%= resource.name %> { fat_write(${BOOT_B_PART_OFFSET}, "<%= resource.name %>") }
+<% end %>
     on-resource rootfs.img {
         raw_write(${ROOTFS_B_PART_OFFSET})
     }
@@ -425,34 +300,8 @@ task upgrade.a {
     # won't hurt anything.
     on-resource start4.elf { fat_write(${BOOT_A_PART_OFFSET}, "start4.elf") }
     on-resource cmdline-a.txt { fat_write(${BOOT_A_PART_OFFSET}, "cmdline.txt") }
-    on-resource fixup4.dat { fat_write(${BOOT_A_PART_OFFSET}, "fixup4.dat") }
-    on-resource config.txt { fat_write(${BOOT_A_PART_OFFSET}, "config.txt") }
-    on-resource kernel8.img { fat_write(${BOOT_A_PART_OFFSET}, "kernel8.img") }
-    on-resource bcm2711-rpi-cm4.dtb { fat_write(${BOOT_A_PART_OFFSET}, "bcm2711-rpi-cm4.dtb") }
-    on-resource bcm2711-rpi-4-b.dtb { fat_write(${BOOT_A_PART_OFFSET}, "bcm2711-rpi-4-b.dtb") }
-    on-resource bcm2711-rpi-400.dtb { fat_write(${BOOT_A_PART_OFFSET}, "bcm2711-rpi-400.dtb") }
-    on-resource overlays/dwc2.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/dwc2.dtbo") }
-    on-resource overlays/i2c-mux.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/i2c-mux.dtbo") }
-    on-resource overlays/imx219.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/imx219.dtbo") }
-    on-resource overlays/imx296.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/imx296.dtbo") }
-    on-resource overlays/imx477.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/imx477.dtbo") }
-    on-resource overlays/imx708.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/imx708.dtbo") }
-    on-resource overlays/miniuart-bt.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/miniuart-bt.dtbo") }
-    on-resource overlays/ov5647.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/ov5647.dtbo") }
-    on-resource overlays/overlay_map.dtb { fat_write(${BOOT_A_PART_OFFSET}, "overlays/overlay_map.dtb") }
-    on-resource overlays/pwm.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/pwm.dtbo") }
-    on-resource overlays/pwm1.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/pwm1.dtbo") }
-    on-resource overlays/pwm-2chan.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/pwm-2chan.dtbo") }
-    on-resource overlays/ramoops.dtb { fat_write(${BOOT_A_PART_OFFSET}, "overlays/ramoops.dtb") }
-    on-resource overlays/rpi-backlight.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/rpi-backlight.dtbo") }
-    on-resource overlays/rpi-ft5406.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/rpi-ft5406.dtbo") }
-    on-resource overlays/tc358743.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/tc358743.dtbo") }
-    on-resource overlays/vc4-kms-dsi-7inch.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/vc4-kms-dsi-7inch.dtbo") }
-    on-resource overlays/vc4-kms-dsi-ili9881-7inch.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/vc4-kms-dsi-ili9881-7inch.dtbo") }
-    on-resource overlays/vc4-kms-v3d.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/vc4-kms-v3d.dtbo") }
-    on-resource overlays/vc4-kms-v3d-pi4.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/vc4-kms-v3d-pi4.dtbo") }
-    on-resource overlays/w1-gpio-pullup.dtbo { fat_write(${BOOT_A_PART_OFFSET}, "overlays/w1-gpio-pullup.dtbo") }
-
+<%= for resource <- file_resources do %>    on-resource <%= resource.name %> { fat_write(${BOOT_A_PART_OFFSET}, "<%= resource.name %>") }
+<% end %>
     on-resource rootfs.img {
         delta-source-raw-offset=${ROOTFS_B_PART_OFFSET}
         delta-source-raw-count=${ROOTFS_B_PART_COUNT}
@@ -519,34 +368,8 @@ task upgrade.b {
     # won't hurt anything.
     on-resource start4.elf { fat_write(${BOOT_B_PART_OFFSET}, "start4.elf") }
     on-resource cmdline-b.txt { fat_write(${BOOT_B_PART_OFFSET}, "cmdline.txt") }
-    on-resource fixup4.dat { fat_write(${BOOT_B_PART_OFFSET}, "fixup4.dat") }
-    on-resource config.txt { fat_write(${BOOT_B_PART_OFFSET}, "config.txt") }
-    on-resource kernel8.img { fat_write(${BOOT_B_PART_OFFSET}, "kernel8.img") }
-    on-resource bcm2711-rpi-cm4.dtb { fat_write(${BOOT_B_PART_OFFSET}, "bcm2711-rpi-cm4.dtb") }
-    on-resource bcm2711-rpi-4-b.dtb { fat_write(${BOOT_B_PART_OFFSET}, "bcm2711-rpi-4-b.dtb") }
-    on-resource bcm2711-rpi-400.dtb { fat_write(${BOOT_B_PART_OFFSET}, "bcm2711-rpi-400.dtb") }
-    on-resource overlays/dwc2.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/dwc2.dtbo") }
-    on-resource overlays/i2c-mux.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/i2c-mux.dtbo") }
-    on-resource overlays/imx219.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/imx219.dtbo") }
-    on-resource overlays/imx296.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/imx296.dtbo") }
-    on-resource overlays/imx477.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/imx477.dtbo") }
-    on-resource overlays/imx708.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/imx708.dtbo") }
-    on-resource overlays/miniuart-bt.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/miniuart-bt.dtbo") }
-    on-resource overlays/ov5647.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/ov5647.dtbo") }
-    on-resource overlays/overlay_map.dtb { fat_write(${BOOT_B_PART_OFFSET}, "overlays/overlay_map.dtb") }
-    on-resource overlays/pwm.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/pwm.dtbo") }
-    on-resource overlays/pwm1.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/pwm1.dtbo") }
-    on-resource overlays/pwm-2chan.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/pwm-2chan.dtbo") }
-    on-resource overlays/ramoops.dtb { fat_write(${BOOT_B_PART_OFFSET}, "overlays/ramoops.dtb") }
-    on-resource overlays/rpi-backlight.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/rpi-backlight.dtbo") }
-    on-resource overlays/rpi-ft5406.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/rpi-ft5406.dtbo") }
-    on-resource overlays/tc358743.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/tc358743.dtbo") }
-    on-resource overlays/vc4-kms-dsi-7inch.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/vc4-kms-dsi-7inch.dtbo") }
-    on-resource overlays/vc4-kms-dsi-ili9881-7inch.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/vc4-kms-dsi-ili9881-7inch.dtbo") }
-    on-resource overlays/vc4-kms-v3d.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/vc4-kms-v3d.dtbo") }
-    on-resource overlays/vc4-kms-v3d-pi4.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/vc4-kms-v3d-pi4.dtbo") }
-    on-resource overlays/w1-gpio-pullup.dtbo { fat_write(${BOOT_B_PART_OFFSET}, "overlays/w1-gpio-pullup.dtbo") }
-
+<%= for resource <- file_resources do %>    on-resource <%= resource.name %> { fat_write(${BOOT_B_PART_OFFSET}, "<%= resource.name %>") }
+<% end %>
     on-resource rootfs.img {
         delta-source-raw-offset=${ROOTFS_A_PART_OFFSET}
         delta-source-raw-count=${ROOTFS_A_PART_COUNT}
