@@ -19,7 +19,10 @@ defmodule NervesSystemRpi4.MixProject do
       description: description(),
       package: package(),
       deps: deps(),
-      aliases: [loadconfig: [&bootstrap/1]],
+      aliases: [
+        loadconfig: [&bootstrap/1],
+        generate_fwup_conf: &generate_fwup_conf/1
+      ],
       docs: docs()
     ]
   end
@@ -67,7 +70,7 @@ defmodule NervesSystemRpi4.MixProject do
   defp deps do
     [
       {:nerves, "~> 1.11", runtime: false},
-      {:nerves_system_br, "1.32.3", runtime: false},
+      {:nerves_system_br, "1.32.5", runtime: false},
       {:nerves_toolchain_aarch64_nerves_linux_gnu, "~> 13.2.0", runtime: false},
       {:nerves_system_linter, "~> 0.4", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.22", only: :docs, runtime: false}
@@ -106,9 +109,11 @@ defmodule NervesSystemRpi4.MixProject do
       "fwup_include",
       "rootfs_overlay",
       "CHANGELOG.md",
-      "cmdline.txt",
+      "cmdline-a.txt",
+      "cmdline-b.txt",
       "config.txt",
       "fwup-ops.conf",
+      "fwup.conf.eex",
       "fwup.conf",
       "LICENSES/*",
       "linux-6.12.defconfig",
@@ -141,5 +146,15 @@ defmodule NervesSystemRpi4.MixProject do
     else
       System.put_env("MIX_TARGET", "target")
     end
+  end
+
+  defp generate_fwup_conf(_args) do
+    template_path = "fwup.conf.eex"
+    output_path = "fwup.conf"
+
+    Mix.shell().info("Generating fwup.conf")
+
+    content = EEx.eval_file(template_path)
+    File.write!(output_path, content)
   end
 end
