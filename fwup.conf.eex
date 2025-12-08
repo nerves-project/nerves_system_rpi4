@@ -1,7 +1,7 @@
 # Firmware configuration file for the Raspberry Pi 4
 #
 # IMPORTANT:
-# Run `mix generate_fwup_conf` to generate fwup.conf.
+# Edit `fwup.conf.eex` and run `mix generate_fwup_conf` to generate fwup.conf.
 #
 require-fwup-version="1.0.0"
 
@@ -50,13 +50,10 @@ file_resources = [
   %{name: "overlays/w1-gpio-pullup.dtbo", path: "${NERVES_SYSTEM}/images/rpi-firmware/overlays/w1-gpio-pullup.dtbo"}
 ]
 %>
-
 # File resources are listed in the order that they are included in the .fw file
 # This is important, since this is the order that they're written on a firmware
 # update due to the event driven nature of the update system.
-<%= for resource <- file_resources do %>file-resource <%= resource.name %> {
-    host-path = "<%= resource.path %>"
-}
+<%= for resource <- file_resources do %>file-resource <%= resource.name %> { host-path = "<%= resource.path %>" }
 <% end %>
 
 file-resource rootfs.img {
@@ -279,12 +276,11 @@ task upgrade.a {
         # Clear some firmware information just in case this update gets
         # interrupted midway. If this partition was bootable, it's not going to
         # be soon.
+        uboot_setenv(uboot-env, "a.nerves_fw_validated", "0")
         uboot_unsetenv(uboot-env, "a.nerves_fw_version")
         uboot_unsetenv(uboot-env, "a.nerves_fw_platform")
         uboot_unsetenv(uboot-env, "a.nerves_fw_architecture")
         uboot_unsetenv(uboot-env, "a.nerves_fw_uuid")
-
-        uboot_setenv(uboot-env, "a.nerves_fw_validated", "0")
 
         # Reset the previous contents of the A boot partition
         fat_mkfs(${BOOT_A_PART_OFFSET}, ${BOOT_A_PART_COUNT})
@@ -348,12 +344,11 @@ task upgrade.b {
 
         # Clear some firmware information just in case this update gets
         # interrupted midway.
+        uboot_setenv(uboot-env, "b.nerves_fw_validated", "0")
         uboot_unsetenv(uboot-env, "b.nerves_fw_version")
         uboot_unsetenv(uboot-env, "b.nerves_fw_platform")
         uboot_unsetenv(uboot-env, "b.nerves_fw_architecture")
         uboot_unsetenv(uboot-env, "b.nerves_fw_uuid")
-
-        uboot_setenv(uboot-env, "b.nerves_fw_validated", "0")
 
         # Reset the previous contents of the B boot partition
         fat_mkfs(${BOOT_B_PART_OFFSET}, ${BOOT_B_PART_COUNT})

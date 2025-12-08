@@ -149,12 +149,13 @@ defmodule NervesSystemRpi4.MixProject do
   end
 
   defp generate_fwup_conf(_args) do
-    template_path = "fwup.conf.eex"
-    output_path = "fwup.conf"
+    template_path = Path.join(__DIR__, "fwup.conf.eex")
+    output_path = Path.join(__DIR__, "fwup.conf")
 
     Mix.shell().info("Generating fwup.conf")
 
     content = EEx.eval_file(template_path)
     File.write!(output_path, content)
+    Mix.shell().info("Successfully generated #{output_path}")
   end
 end
