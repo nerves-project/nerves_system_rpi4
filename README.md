@@ -6,6 +6,9 @@
 
 This is the base Nerves System configuration for the Raspberry Pi 4 Model B.
 
+*This is the `main` branch. If you are customizing a `v1.x` system, please see
+the `maint-v1.x` branch.*
+
 ![Raspberry Pi 4 image](assets/images/raspberry-pi-4-model-b.jpg)
 <br><sup>[Michael Henzler / Wikimedia Commons / CC BY-SA
 4.0](https://en.wikipedia.org/wiki/File:Raspberry_Pi_4_Model_B_-_Top.jpg)</sup>
