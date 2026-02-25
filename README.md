@@ -63,6 +63,13 @@ creates to your project. If you haven't modified the Nerves-specific
 configuration parts of your project much, the firmware validation piece should
 be the main update.
 
+Please also review your use of `Nerves.Runtime.KV` in your application since the
+`nerves_fw_active` key no longer is used. Use `Nerves.Runtime.firmware_slots/0`
+to determine the active firmware slot. The `nerves_fw_active` key wasn't always
+accurate, so it was removed to avoid a misleading answer. The function call is
+reliable and also a generic way to determine slot status on all Nerves
+platforms.
+
 ## Supported WiFi devices
 
 The base image includes drivers for the onboard Raspberry Pi 4 wifi module
