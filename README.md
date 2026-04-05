@@ -10,6 +10,14 @@ This is the base Nerves System configuration for the Raspberry Pi 4 Model B.
 the `maint-v1.x` branch. See the "Upgrading to 2.0" section if you are upgrading
 your Nerves system dependency.*
 
+**IMPORTANT:** If your Raspberry Pi 4 was manufactured a long time ago, please
+upgrade the bootloader EEPROM firmware. This has fixed issues preventing devices
+from booting or rebooting. Raspberry Pi OS has a [reliable way of updating the
+EEPROM](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#bootloader_update_stable).
+You may have success with
+[nerves_rpi_eeprom](https://github.com/fhunleth/nerves_rpi_eeprom) if you're
+running a pre-2.0 firmware and haven't upgraded yet.
+
 ![Raspberry Pi 4 image](assets/images/raspberry-pi-4-model-b.jpg)
 <br><sup>[Michael Henzler / Wikimedia Commons / CC BY-SA
 4.0](https://en.wikipedia.org/wiki/File:Raspberry_Pi_4_Model_B_-_Top.jpg)</sup>
