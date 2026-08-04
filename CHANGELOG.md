@@ -12,6 +12,16 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+## v2.1.1
+
+This is a security and bug fix release.
+
+* Changes
+  * Include rootfs.tar for use with Nerves 2.0 development builds (ignored by Nerves 1.x)
+
+* Package updates
+  * [nerves_system_br 1.34.1](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.34.1)
+
 ## v2.1.0
 
 This is a major update with security and feature updates throughout.
@@ -1044,4 +1054,3 @@ the Raspberry Pi Foundation promotes 32-bit usage so that's what's used here.
   * Erlang 22.0.7
   * [nerves_system_br v1.8.4](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.8.4)
   * [nerves_toolchain_arm_unknown_linux_gnueabihf v1.2.0](https://github.com/nerves-project/toolchains/releases/tag/v1.2.0)
-
